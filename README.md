@@ -5,6 +5,7 @@ These are by no means good or fast solutions, just my personal repo to keep trac
 Please no Intcode.....
 
 ## Usage for fetch utils
+### Setup
 In order for the fetch utils to work properly:
 - create a folder /secrets in the src/advent-of-go-2020
 - place session.go inside this newly created folder
@@ -33,4 +34,22 @@ package secrets
 const (
 	Session = "session=<your-session-key>"
 )
+```
+
+
+### Usage
+
+```golang
+package main
+
+import "advent-of-go-2020/utils"
+
+func main() {
+	input := utils.ReadInputFile(1, "\n")
+	//			     ^    ^
+	//			     |    |
+	//                          day   |
+	//                                |
+	//                            delimiter
+}
 ```
