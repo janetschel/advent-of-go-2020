@@ -1,6 +1,8 @@
 # advent-of-go-2020
 Advent of Code 2020 in golang  
-This are by no means good or fast solutions, just my personal repo to keep tracks of this years progress
+
+These are by no means good or fast solutions, just my personal repo to keep tracks of this years progress  
+Please no Intcode.....
 
 ## Usage for fetch utils
 In order for the fetch utils to work properly:
