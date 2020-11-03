@@ -20,8 +20,8 @@ advent-of-go-2020/
 │   ├── day-01
 │   └── ...
 ├── utils/
-│   ├── fetch.go
-│   └── readfile.go
+│   ├── file.go
+│   └── request.go
 └── secrets/
     └── session.go
 ```
@@ -45,12 +45,12 @@ package main
 import "advent-of-go-2020/utils"
 
 func main() {
-	input := utils.ReadInputFile(1, "\n")
-	//			     ^    ^
-	//			     |    |
-	//                          day   |
-	//                                |
-	//                            delimiter
+	input := utils.ReadFile(1, "\n")
+	//		        ^    ^
+	//	       	        |    |
+	//                     day   |
+	//                           |
+	//                       delimiter
 	
 	// more code...
 }
