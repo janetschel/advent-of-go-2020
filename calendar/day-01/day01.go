@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	input := utils.ReadInputFile(1, "\n")
+	input := utils.ReadFile(1, "\n")
 	fmt.Println(input) // happy testing till 01-12-2020
 }

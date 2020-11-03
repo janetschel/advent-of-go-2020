@@ -8,18 +8,6 @@ import (
 	"net/http"
 )
 
-func CreateFile(day int, filePath string) {
-	puzzleInput := makeRequest(day)
-
-	err := ioutil.WriteFile(filePath, []byte(puzzleInput), 0755)
-
-	if err != nil {
-		log.Fatal(err)
-	} else {
-		log.Println("INFO: File successfully created")
-	}
-}
-
 func makeRequest(day int) string {
 	url := fmt.Sprintf("https://adventofcode.com/2020/day/%v/input", day)
 	req, err := http.NewRequest("GET", url, nil)

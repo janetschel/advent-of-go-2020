@@ -11,7 +11,7 @@ import (
 
 // Reads content of the input file and returns it in an array, split by the specified delimiter
 // If the input file does not exist, it will be created
-func ReadInputFile(day int, delimiter string) []string {
+func ReadFile(day int, delimiter string) []string {
 	currentDay := strconv.Itoa(day)
 
 	if len(currentDay) == 1 {
@@ -20,7 +20,7 @@ func ReadInputFile(day int, delimiter string) []string {
 
 	filePath := fmt.Sprintf("calendar/day-%v/puzzle-input.txt", currentDay)
 	if _, err := os.Stat(filePath); os.IsNotExist(err) {
-		CreateFile(day, filePath)
+		createFile(day, filePath)
 	} else {
 		log.Fatal("INFO: File already exists.. Will not create new one")
 	}
@@ -34,4 +34,16 @@ func ReadInputFile(day int, delimiter string) []string {
 	slicedContent := strings.Split(fileContent, delimiter)
 
 	return slicedContent
+}
+
+func createFile(day int, filePath string) {
+	puzzleInput := makeRequest(day)
+
+	err := ioutil.WriteFile(filePath, []byte(puzzleInput), 0755)
+
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		log.Println("INFO: File successfully created")
+	}
 }
