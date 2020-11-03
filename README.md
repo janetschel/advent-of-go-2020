@@ -17,7 +17,9 @@ Your project structure should look likes this:
 ```
 advent-of-go-2020/
 ├── calendar/
-│   ├── day-01
+│   ├── day-01/
+│   │   ├── day01.go
+│   │   └── input-file.txt  // <-- this is created by fetch utils
 │   └── ...
 ├── utils/
 │   ├── file.go
