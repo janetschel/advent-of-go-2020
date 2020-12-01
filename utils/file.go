@@ -33,7 +33,7 @@ func ReadFile(day int, delimiter string) []string {
 	fileContent := string(file)
 	slicedContent := strings.Split(fileContent, delimiter)
 
-	return slicedContent
+	return slicedContent[:len(slicedContent) - 1]
 }
 
 func createFile(day int, filePath string) {
