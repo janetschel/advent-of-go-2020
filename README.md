@@ -78,7 +78,7 @@ import "advent-of-go-2020/utils"
 func main() {
 	// explicit type declaration to see what's going on
 	
-	var input []string = utils.ReadFile(1, "\n")
-	var convertedInput []int = utils.ToIntSlice(input)
+	var inputSlice []string = utils.ReadFile(1, "\n")
+	var inputConverted []int = utils.ToIntSlice(input)
 }
 ```
