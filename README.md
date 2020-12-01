@@ -26,7 +26,7 @@ advent-of-go-2020/
 ├── calendar/
 │   ├── day-01/
 │   │   ├── day01.go
-│   │   └── input-file.txt  // <-- this is created by fetch utils
+│   │   └── puzzle-input.txt  // <-- this is created by fetch utils
 │   └── ...
 ├── utils/
 │   ├── file.go
