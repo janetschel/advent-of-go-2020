@@ -1,12 +1,21 @@
 package utils
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 func ToIntSlice(slice []string) []int {
 	sliceToReturn := []int{}
 
 	for _, current := range slice {
-		convertedString, _ := strconv.Atoi(current)
+		fmt.Println(current)
+		convertedString, err := strconv.Atoi(current)
+
+		if err != nil {
+			panic("Can't convert to int.. Please check the validity your input AND your specified delimiter")
+		}
+
 		sliceToReturn = append(sliceToReturn, convertedString)
 	}
 
