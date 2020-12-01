@@ -3,7 +3,6 @@ package utils
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -27,7 +26,7 @@ func ReadFile(day int, delimiter string) []string {
 
 	file, err := ioutil.ReadFile(filePath)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	fileContent := string(file)
@@ -57,8 +56,8 @@ func createFile(day int, filePath string) {
 	err := ioutil.WriteFile(filePath, []byte(puzzleInput), 0755)
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	} else {
-		log.Println("INFO: File successfully created")
+		fmt.Println("INFO: File successfully created")
 	}
 }

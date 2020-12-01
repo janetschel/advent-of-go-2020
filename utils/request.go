@@ -4,7 +4,6 @@ import (
 	"advent-of-go-2020/secrets"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -13,7 +12,7 @@ func makeRequest(day int) string {
 	req, err := http.NewRequest("GET", url, nil)
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	req.Header.Set("Cookie", secrets.Session)
@@ -22,13 +21,13 @@ func makeRequest(day int) string {
 	response, err := client.Do(req)
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	body, err := ioutil.ReadAll(response.Body)
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	return string(body)
