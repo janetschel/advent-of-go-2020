@@ -2,21 +2,17 @@ package main
 
 import (
 	"advent-of-go-2020/utils"
-	"strconv"
 )
 
 func main() {
-	input := utils.ReadFile(1, "\n")
+	inputSliceAsString := utils.ReadFile(1, "\n")
+	input := utils.ToIntSlice(inputSliceAsString)
 
 	for i := 0; i < len(input); i++ {
 		for j := i + 1; j < len(input); j++ {
 			for k := j + 1; k < len(input); k++ {
-				first, _ := strconv.Atoi(input[i])
-				second, _ := strconv.Atoi(input[j])
-				third, _ := strconv.Atoi(input[k])
-
-				if first + second + third == 2020 {
-					println(first * second * third)
+				if input[i] + input[j] + input[k] == 2020 {
+					println(input[i] * input[j] * input[k])
 					return
 				}
 			}
