@@ -22,7 +22,7 @@ func ReadFile(day int, delimiter string) []string {
 	if _, err := os.Stat(filePath); os.IsNotExist(err) {
 		createFile(day, filePath)
 	} else {
-		log.Fatal("INFO: File already exists.. Will not create new one")
+		fmt.Println("INFO: File already exists.. Will not create new one")
 	}
 
 	file, err := ioutil.ReadFile(filePath)
