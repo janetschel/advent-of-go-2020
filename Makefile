@@ -1,6 +1,6 @@
 day = $(shell date +'%-d')
 
-new:
+new-day:
 	@echo "Creating new file structure for day" $(day)"..."
 
 	@if [ $(day) -lt 10 ] ; then \
