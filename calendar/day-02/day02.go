@@ -3,43 +3,24 @@ package main
 import (
 	"advent-of-go-2020/utils"
 	"fmt"
-	"strconv"
 	"strings"
 )
 
 func main() {
 	input := utils.ReadFile(2, "\n")
+	pwds := utils.Filter(input, isPasswordValid)
+	num := utils.Count(pwds)
 
-	numberOfKnownValidPasswords := 0
-
-	for _, currentElement := range input {
-		if isPasswordValid(currentElement) {
-			numberOfKnownValidPasswords++
-		}
-	}
-
-	fmt.Printf("Number of valid passwords: %d", numberOfKnownValidPasswords)
+	fmt.Printf("Number of valid passwords: %d", num)
 }
 
 func isPasswordValid(currentElement string) bool {
-	partsOfLine := strings.Split(currentElement, ":")
-	numbers := strings.Split(partsOfLine[0], "-")
+	parts := strings.Split(currentElement, " ")
 
-	lowerBound, _ := strconv.Atoi(numbers[0])
-	upperBound, _ := strconv.Atoi(numbers[1][:len(numbers[1]) - 2])
-	charToSearch := numbers[1][len(numbers[1]) - 1:]
-	password := partsOfLine[1][1:]
+	var numbers, char, pwd, lo, hi string
+	utils.Unpack(parts, &numbers, &char, &pwd)
+	utils.Unpack(strings.Split(numbers, "-"), &lo, &hi)
 
-	currentNumberOfChar := 0
-	for _, char := range password {
-		if string(char) == charToSearch {
-			currentNumberOfChar++
-		}
-
-		if currentNumberOfChar > upperBound {
-			return false
-		}
-	}
-
-	return currentNumberOfChar >= lowerBound
+	numChars := strings.Count(pwd, char[:len(char) - 1])
+	return numChars >= utils.ToInt(lo) && numChars <= utils.ToInt(hi)
 }
