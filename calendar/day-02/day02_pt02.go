@@ -3,45 +3,27 @@ package main
 import (
 	"advent-of-go-2020/utils"
 	"fmt"
-	"strconv"
 	"strings"
 )
 
 func main() {
 	input := utils.ReadFile(2, "\n")
+	pwds := utils.Filter(input, isPasswordValidCharPos)
+	num := utils.Count(pwds)
 
-	numberOfKnownValidPasswords := 0
-
-	for _, currentElement := range input {
-		if isPasswordValidCharPos(currentElement) {
-			numberOfKnownValidPasswords++
-		}
-	}
-
-	fmt.Printf("Number of valid passwords: %d", numberOfKnownValidPasswords)
+	fmt.Printf("Number of valid passwords: %d", num)
 }
 
 func isPasswordValidCharPos(currentElement string) bool {
-	parts := strings.Split(currentElement, ":")
-	numbers := strings.Split(parts[0], "-")
+	parts := strings.Split(currentElement, " ")
 
-	i, _ := strconv.Atoi(numbers[0])
-	j, _ := strconv.Atoi(numbers[1][:len(numbers[1]) - 2])
-	char := numbers[1][len(numbers[1]) - 1:]
-	pwd := parts[1][1:]
+	var numbers, char, pwd, i, j string
+	utils.Unpack(parts, &numbers, &char, &pwd)
+	utils.Unpack(strings.Split(numbers, "-"), &i, &j)
 
-	// Indices are not zero based in input
-	i--
-	j--
+	char = char[:len(char) - 1]
+	first, errFirst := utils.CharAt(pwd, utils.ToInt(i) - 1)
+	second, errSecond := utils.CharAt(pwd, utils.ToInt(j) - 1)
 
-	if i > len(pwd) {
-		return false
-	} else if j > len(pwd) - 1 {
-		return string(pwd[i]) == char
-	}
-
-	validFirstPos := string(pwd[i]) == char && string(pwd[j]) != char
-	validSecondPos := string(pwd[i]) != char && string(pwd[j]) == char
-
-	return validFirstPos != validSecondPos // XOR
+	return errFirst == nil && errSecond == nil && (first == char) != (second == char)
 }
