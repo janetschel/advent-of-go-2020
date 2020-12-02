@@ -4,6 +4,10 @@ Advent of Code 2020 in golang
 These are by no means good or fast solutions, just my personal repo to keep tracks of this years progress  
 Please no Intcode..... *(doesn't look like it yet :))))))))*
 
+## Makefile
+Use `make new-day` in the terminal to automatically create a new folder with the important files for the day.  
+These files are copied from the static-template folder. If you want to make any changes to the blueprint, do it there.
+
 ## Usage for fetch utils
 Keep in mind that these fetch utils **do not** request the input **again** if the input file already exists.  
 It will just use the existing file without making any HTTP requests, so we don't spam the API of https://adventofcode.com/
@@ -26,11 +30,18 @@ advent-of-go-2020/
 ├── calendar/
 │   ├── day-01/
 │   │   ├── day01.go
+│   │   ├── day01_pt02.go
 │   │   └── puzzle-input.in  // <-- this is created by fetch utils
 │   └── ...
 ├── utils/
-│   ├── file.go
-│   └── request.go
+│   ├── conv/
+│   ├── files/
+│   ├── req/
+│   ├── slices/
+│   └── str/
+├── static-template/
+│   ├── dayxx.go         // <--
+│   └── dayxx_pt02.go    // <-- change these two files to change the behaviour of the Makefile
 └── secrets/
     └── session.go
 ```
