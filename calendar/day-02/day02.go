@@ -10,7 +10,7 @@ import (
 func main() {
 	input := files.ReadFile(2, "\n")
 	pwds := slices.Filter(input, isPasswordValid)
-	println(slices.Count(pwds))
+	println(len(pwds))
 }
 
 func isPasswordValid(currentElement string) bool {

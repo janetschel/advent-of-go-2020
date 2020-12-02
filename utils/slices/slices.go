@@ -1,9 +1,5 @@
 package slices
 
-type Iterable interface {
-	String()
-}
-
 func Unpack(slice []string, vars... *string) {
 	for i, str := range slice {
 		*vars[i] = str
@@ -20,8 +16,4 @@ func Filter(slice []string, filter func(string) bool) []string {
 	}
 
 	return retSlice
-}
-
-func Count(slice []string) int {
-	return len(slice)
 }
