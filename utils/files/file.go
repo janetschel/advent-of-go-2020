@@ -1,6 +1,7 @@
-package utils
+package files
 
 import (
+	"advent-of-go-2020/utils/req"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -51,7 +52,7 @@ func ReadFile(day int, delimiter string) []string {
 }
 
 func createFile(day int, filePath string) {
-	puzzleInput := makeRequest(day)
+	puzzleInput := req.MakeRequest(day)
 
 	err := ioutil.WriteFile(filePath, []byte(puzzleInput), 0755)
 

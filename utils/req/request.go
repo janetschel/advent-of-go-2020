@@ -1,4 +1,4 @@
-package utils
+package req
 
 import (
 	"advent-of-go-2020/secrets"
@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func makeRequest(day int) string {
+func MakeRequest(day int) string {
 	url := fmt.Sprintf("https://adventofcode.com/2020/day/%v/input", day)
 	req, err := http.NewRequest("GET", url, nil)
 
