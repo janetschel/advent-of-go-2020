@@ -39,11 +39,12 @@ advent-of-go-2020/
 │   ├── req/
 │   ├── slices/
 │   └── str/
-├── static-template/
-│   ├── dayxx.go         // <--
-│   └── dayxx_pt02.go    // <-- change these two files to change the behaviour of the Makefile
-└── secrets/
-    └── session.go
+├── secrets/
+│   └── session.go
+├── Makefile 
+└── template    // <-- change this if you wish to modify your blueprint
+
+
 ```
 <br />
 
