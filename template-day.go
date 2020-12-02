@@ -9,7 +9,3 @@ func main() {
 	input := files.ReadFile(0, "\n")
 	println(input)
 }
-
-func solvePt2() {
-	// Add solution for part 2 here
-}
