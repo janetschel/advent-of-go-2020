@@ -5,7 +5,6 @@ import (
 	"advent-of-go-2020/utils/files"
 	"advent-of-go-2020/utils/slices"
 	"advent-of-go-2020/utils/str"
-	"strings"
 )
 
 func main() {
@@ -15,12 +14,11 @@ func main() {
 }
 
 func isPasswordValidCharPos(currentElement string) bool {
-	var numbers, char, pwd, lo, hi string
-	slices.Unpack(strings.Split(currentElement, " "), &numbers, &char, &pwd)
-	slices.Unpack(strings.Split(numbers, "-"), &lo, &hi)
+	var i, j, char, pwd string
+	slices.ParseLine(currentElement, "(-)|(:\\s)|\\s", &i, &j, &char, &pwd)
 
-	i, errFirst := str.CharAt(pwd, conv.ToInt(lo) - 1)
-	j, errSecond := str.CharAt(pwd, conv.ToInt(hi) - 1)
+	i, errFirst := str.CharAt(pwd, conv.ToInt(i) - 1)
+	j, errSecond := str.CharAt(pwd, conv.ToInt(j) - 1)
 
-	return errFirst == nil && errSecond == nil && (i == char[:len(char) - 1]) != (j == char[:len(char) - 1])
+	return errFirst == nil && errSecond == nil && (i == char) != (j == char)
 }

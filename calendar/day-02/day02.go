@@ -14,10 +14,9 @@ func main() {
 }
 
 func isPasswordValid(currentElement string) bool {
-	var numbers, char, pwd, lo, hi string
-	slices.Unpack(strings.Split(currentElement, " "), &numbers, &char, &pwd)
-	slices.Unpack(strings.Split(numbers, "-"), &lo, &hi)
+	var i, j, char, pwd string
+	slices.ParseLine(currentElement, "(-)|(:\\s)|\\s", &i, &j, &char, &pwd)
 
-	numChars := strings.Count(pwd, char[:len(char) - 1])
-	return numChars >= conv.ToInt(lo) && numChars <= conv.ToInt(hi)
+	numChars := strings.Count(pwd, char)
+	return numChars >= conv.ToInt(i) && numChars <= conv.ToInt(j)
 }
