@@ -2,14 +2,14 @@
 Advent of Code 2020 in golang  
 
 These are by no means good or fast solutions, just my personal repo to keep tracks of this years progress  
-Please no Intcode.....
+Please no Intcode..... *(doesn't look like it yet :))))))))*
 
 ## Usage for fetch utils
-Keep in mind that these fetch utils **do not** request the input **again** if the input-file already exists.  
+Keep in mind that these fetch utils **do not** request the input **again** if the input file already exists.  
 It will just use the existing file without making any HTTP requests, so we don't spam the API of https://adventofcode.com/
 
 
-If you **want to make** another request to AOC in order to refresh your input file (for whatever reason you want to do so), you need to delete the already existing puzzle-input.txt file so the fetch-utils make a new request.
+If you **want to make** another request to AOC in order to refresh your input file (for whatever reason you want to do so), you need to delete the already existing `puzzle-input.in` file so the fetch-utils make a new request.
 
 
 ### Setup
@@ -26,7 +26,7 @@ advent-of-go-2020/
 ├── calendar/
 │   ├── day-01/
 │   │   ├── day01.go
-│   │   └── puzzle-input.txt  // <-- this is created by fetch utils
+│   │   └── puzzle-input.in  // <-- this is created by fetch utils
 │   └── ...
 ├── utils/
 │   ├── file.go
@@ -82,3 +82,5 @@ func main() {
 	var inputConverted []int = utils.ToIntSlice(input)
 }
 ```
+
+**It offers way more util functions now... just check it out :)**
