@@ -5,7 +5,7 @@ These are by no means good or fast solutions, just my personal repo to keep trac
 Please no Intcode..... *(doesn't look like it yet :))))))))*
 
 ## Makefile
-Use `make new-day` in the terminal to automatically create a new folder with the important files for the day.  
+Use `make new` in the terminal to automatically create a new folder with the important files for the day.  
 These files are copied from the static-template folder. If you want to make any changes to the blueprint, do it there.
 
 ## Usage for fetch utils
