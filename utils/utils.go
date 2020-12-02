@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"errors"
 	"strconv"
 )
 
@@ -50,4 +51,12 @@ func Filter(slice []string, filter func(string) bool) []string {
 
 func Count(slice []string) int {
 	return len(slice)
+}
+
+func CharAt(str string, pos int) (string, error) {
+	if pos >= len(str) {
+		return "", errors.New("invalid index")
+	}
+
+	return string(str[pos]), nil
 }
