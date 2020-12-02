@@ -43,8 +43,6 @@ advent-of-go-2020/
 │   └── session.go
 ├── Makefile 
 └── template    // <-- change this if you wish to modify your blueprint
-
-
 ```
 <br />
 
