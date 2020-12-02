@@ -1,15 +1,16 @@
 package main
 
 import (
-	"advent-of-go-2020/utils"
+	"advent-of-go-2020/utils/conv"
+	"advent-of-go-2020/utils/files"
 	"errors"
 	"fmt"
 	"log"
 )
 
 func main() {
-	inputSliceAsString := utils.ReadFile(1, "\n")
-	input := utils.ToIntSlice(inputSliceAsString)
+	inputSliceAsString := files.ReadFile(1, "\n")
+	input := conv.ToIntSlice(inputSliceAsString)
 
 	solution, err := findPairToMakeSum(input, 2020)
 	if err != nil {
