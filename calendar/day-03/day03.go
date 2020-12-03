@@ -5,8 +5,6 @@ import (
 	"fmt"
 )
 
-
-
 // For this day this file contains the solution for part 1 and part 2, since they are almost identical
 func main() {
 	input := files.ReadFile(3, "\n")
