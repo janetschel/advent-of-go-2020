@@ -18,7 +18,7 @@ For the first line `1-3 a: abcde` our policy is as follows:
 - `abcde` is the password
 
 Following these criterias, ex. 1 and 3 are valid.  
-The middle password **is not** since `b` is containt 0 times in it.
+The middle password **is not** since `b` is contained 0 times in it.
 
 For **part 2** all the above rules still apply, but `1-3` does not correspond to the number of times the char must appear in the password,
 it corresponds to not zero-indexed indices, at which the password must contain the char exactly 1 time.
