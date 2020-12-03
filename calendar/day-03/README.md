@@ -1,7 +1,7 @@
 # Day 3: Toboggan Trajectory
 ## Problem Summary ([?](https://adventofcode.com/2020/day/3))
 
-This problem requires us to find the number trees (represented by #) on a path from a startpoint to an endpoint.
+This problem requires us to find the number of trees (represented by #) on a path from a startpoint to an endpoint.
 
 Suppose the following array given:
 ```
