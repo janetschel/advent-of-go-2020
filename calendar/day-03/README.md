@@ -18,7 +18,7 @@ Suppose the following array given:
 .#..#...#.#
 ```
 
-We start on the top left `(0,0)` and move to the right and down with specified amounts, eg. (3,1) (we would move 3 to the right and 1 down).
+We start on the top left `(0,0)` and move to the right and down with specified amounts, eg. `(3,1)` (we would move 3 to the right and 1 down).
 
 Consider the array repeating to the right (the lines are not over when they are, they wrap around):
 ```
