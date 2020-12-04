@@ -24,3 +24,13 @@ func Filter(slice []string, filter func(string) bool) []string {
 
 	return retSlice
 }
+
+func Contains(slice []string, word string) bool {
+	for _, element := range slice {
+		if element == word {
+			return true
+		}
+	}
+
+	return false
+}
