@@ -50,7 +50,7 @@ func validate(element string) bool {
 		return false
 	} else if (unit == "cm" && (hgt < 150 ||  hgt > 193)) || (unit == "in" && (hgt < 59 || hgt > 76)) {
 		return false
-	}else if matched, err := regexp.MatchString("#([0-9a-f]){6}", parts["hcl"]); !matched || err != nil {
+	} else if matched, err := regexp.MatchString("#([0-9a-f]){6}", parts["hcl"]); !matched || err != nil {
 		return false
 	} else if _, err := strconv.Atoi(parts["pid"]); err != nil || len(parts["pid"]) != 9 {
 		return false
