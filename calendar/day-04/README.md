@@ -34,10 +34,10 @@ For both parts we need to find the amount of valid passports in our input.
 For **part 1** a passport is valid if it has all the fields from above (except the field `cid`).  
 If the field `cid` is present **or missing** we treat the passport as valid
 
-The first passport in our example list is valid since all eight fields are present. 
+The first passport in our example list is valid since all eight fields are present.  
 The second passport is invalid because it is missing `hgt`.
 
-For **part 2** all ob the above rules still apply, however each field of the passport has its own criterias that need to be fulfilled in order for the whole passport to be valid.  
+For **part 2** all of the above rules still apply, however each field of the passport has its own criterias that need to be fulfilled in order for the whole passport to be valid.  
 These criterias are as follows:
 - `byr`: four digits; at least 1920 and at most 2002.
 - `iyr`: four digits; at least 2010 and at most 2020.
