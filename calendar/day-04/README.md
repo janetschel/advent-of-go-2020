@@ -55,7 +55,7 @@ My solution for **part 1** is `182`.
 My solution for **part 2** is `109`.
 
 ## Recap
-Well.. I have very mixed opinions on this problem... Not because it is a rather strange problem which mostly involves string-manipulation, but because of my apparent ability to read the problem stated.
+Well.. I have very mixed opinions on this problem... Not because it is a rather strange problem which mostly involves string-manipulation, but because of my apparent inability to read the problem stated.
 
 **Part 1** was very easy and straig-forward for me... just some `String.Contains(...)` calls and that's it.  
 **Part 2** actually does not differ from this all that much, but I missed reading a rule in the list and did not check it... it took me a long while to re-read the problem and to find out, that I was missing an if-check (about 50 minutes, sadly). I was desperatly searching for a bug in my `solvePart2()` function, sadly.
