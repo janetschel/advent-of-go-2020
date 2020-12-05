@@ -29,22 +29,6 @@ func (p *Passport) init(parts map[string]string) {
 	p.hgt = parseHeight(parts["hgt"])
 }
 
-func main() {
-	input := files.ReadFile(4, "\n\n")
-	println("Valid passports:", solveReworked(input))
-}
-
-func makeMap(element string) map[string]string {
-	parts := make(map[string]string)
-
-	for _, curr := range strings.Fields(element) {
-		part := strings.Split(curr, ":")
-		parts[part[0]] = part[1]
-	}
-
-	return parts
-}
-
 func parseHeight(hgt string) Height {
 	if len(hgt) < 2 {
 		return Height{ hgt:  0, unit: ""}
@@ -54,6 +38,11 @@ func parseHeight(hgt string) Height {
 		hgt:  conv.ToIntOrElse(hgt[:len(hgt) - 2], 0),
 		unit: hgt[len(hgt) - 2:],
 	}
+}
+
+func main() {
+	input := files.ReadFile(4, "\n\n")
+	println("Valid passports:", solveReworked(input))
 }
 
 func solveReworked(input []string) int {
@@ -69,6 +58,17 @@ func solveReworked(input []string) int {
 	}
 
 	return valid
+}
+
+func makeMap(element string) map[string]string {
+	parts := make(map[string]string)
+
+	for _, curr := range strings.Fields(element) {
+		part := strings.Split(curr, ":")
+		parts[part[0]] = part[1]
+	}
+
+	return parts
 }
 
 func validPassport(p Passport) bool {
