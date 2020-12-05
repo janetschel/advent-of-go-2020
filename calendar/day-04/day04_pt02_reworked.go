@@ -11,11 +11,11 @@ import (
 type Passport struct {
 	byr, iyr, eyr int
 	hcl, ecl, pid string
-	hgt Height
+	hgt           Height
 }
 
 type Height struct {
-	hgt int
+	hgt  int
 	unit string
 }
 
@@ -31,12 +31,12 @@ func (p *Passport) init(parts map[string]string) {
 
 func parseHeight(hgt string) Height {
 	if len(hgt) < 2 {
-		return Height{ hgt:  0, unit: ""}
+		return Height{hgt: 0, unit: ""}
 	}
 
-	return Height {
-		hgt:  conv.ToIntOrElse(hgt[:len(hgt) - 2], 0),
-		unit: hgt[len(hgt) - 2:],
+	return Height{
+		hgt:  conv.ToIntOrElse(hgt[:len(hgt)-2], 0),
+		unit: hgt[len(hgt)-2:],
 	}
 }
 
@@ -49,8 +49,15 @@ func solveReworked(input []string) int {
 	valid := 0
 
 	for _, element := range input {
+		parts := make(map[string]string)
+
+		for _, curr := range strings.Fields(element) {
+			part := strings.Split(curr, ":")
+			parts[part[0]] = part[1]
+		}
+
 		passport := new(Passport)
-		passport.init(makeMap(element))
+		passport.init(parts)
 
 		if validPassport(*passport) {
 			valid++
@@ -60,19 +67,8 @@ func solveReworked(input []string) int {
 	return valid
 }
 
-func makeMap(element string) map[string]string {
-	parts := make(map[string]string)
-
-	for _, curr := range strings.Fields(element) {
-		part := strings.Split(curr, ":")
-		parts[part[0]] = part[1]
-	}
-
-	return parts
-}
-
 func validPassport(p Passport) bool {
-	checks := map[string]bool {
+	checks := map[string]bool{
 		"byr": 1920 <= p.byr && p.byr <= 2002,
 		"iyr": 2010 <= p.iyr && p.iyr <= 2020,
 		"eyr": 2020 <= p.eyr && p.eyr <= 2030,
