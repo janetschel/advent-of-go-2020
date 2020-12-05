@@ -38,7 +38,7 @@ My inability to read the problem carefully enough persisted a little.
 I first thought the range for the column is `0` to `8` and not `0` to `7`, which lead me to some wrong answers (but also to some correct ones). This was the reason, why it took me so long to debug :(  
 After 20 minutes of trying I decided to re-read the problem and found my error (finally).
 
-Also, I got a little cought up in the second part, since I did not immediatly understand what the problem was aksin for. I needed to re-read this several times.
+Also, I got a little cought up in the second part, since I did not immediatly understand what the problem was asking for. I needed to re-read this several times.
 
 Besides that, I had no problems at all with this problem and really enjoyed it.  
 It also seems that the problems don't get as hard as quickly as they did in 2019.
