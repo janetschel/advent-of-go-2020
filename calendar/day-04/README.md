@@ -73,3 +73,8 @@ My solve-times for this problem:
 - `01:09:45` for part 2 (#5072)
 
 I hope for better reading comprehension tomorrow ;)
+
+## Update
+I reworked part 2 since I did not like my original solve at all.. debugging my original solve was hell.
+
+If AoC 2020 consists of more passport-days (I think so), then I can pretty quickly change my reworked part. That's the plan at least.
