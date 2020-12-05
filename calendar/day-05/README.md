@@ -35,7 +35,7 @@ All in all, this was an okay problem.
 It honestly just consisted of some basic binary-searching and splitting ranges.
 
 My inability to read the problem carefully enough persisted a little.  
-I first thought the range for the column is `0` to `8` and not `0` to `7`, which led me to some wrong answers (but also to some correct ones). This was the reason, why it took me so long to debug :(  
+I first thought the range for the column is `0` to `8` and not `0` to `7`, which lead me to some wrong answers (but also to some correct ones). This was the reason, why it took me so long to debug :(  
 After 20 minutes of trying I decided to re-read the problem and found my error (finally).
 
 Also, I got a little cought up in the second part, since I did not immediatly understand what the problem was aksin for. I needed to re-read this several times.
