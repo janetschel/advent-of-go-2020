@@ -29,3 +29,13 @@ func ToInt(str string) int {
 
 	return number
 }
+
+func ToIntOrElse(str string, elseVal int) int {
+	number, err := strconv.Atoi(str)
+
+	if err != nil {
+		return elseVal
+	}
+
+	return number
+}
