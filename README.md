@@ -74,23 +74,3 @@ func main() {
 	// more code...
 }
 ```
-<br />
-
-## []string to []int function
-This blueprint also offers a convenient way to convert string slices to int slices on the fly.
-
-Use it as follows:
-```golang
-package main
-
-import "advent-of-go-2020/utils"
-
-func main() {
-	// explicit type declaration to see what's going on
-	
-	var inputSlice []string = utils.ReadFile(1, "\n")
-	var inputConverted []int = utils.ToIntSlice(input)
-}
-```
-
-**It offers way more util functions now... just check it out :)**
