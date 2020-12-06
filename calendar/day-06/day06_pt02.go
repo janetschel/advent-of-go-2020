@@ -21,12 +21,12 @@ func solvePart2(input []string) int {
 }
 
 func answersPart2(group string) int{
-	givenAnswers := make(map[string]int)
+	givenAnswers := make(map[rune]int)
 	lines := strings.Split(group, "\n")
 
 	for _, line := range lines {
 		for _, question := range line {
-			givenAnswers[string(question)] += 1
+			givenAnswers[question] += 1
 		}
 	}
 
