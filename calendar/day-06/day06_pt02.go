@@ -31,9 +31,9 @@ func answersPart2(group string) int{
 	}
 
 	count := 0
-	for value := range givenAnswers {
-		if ans, present := givenAnswers[value]; present && ans == len(lines) {
-			count += 1 // everyone answered yes
+	for question := range givenAnswers {
+		if ansCount, present := givenAnswers[question]; present && ansCount == len(lines) {
+			count += 1 // everyone answered yes to question ans
 		}
 	}
 

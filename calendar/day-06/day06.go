@@ -21,13 +21,13 @@ func solve(input []string) int {
 }
 
 func answers(group string) int{
-	givenAnswers := make(map[string]types.Nil)
+	givenAnswers := make(map[rune]types.Nil)
 	count := 0
 
 	for _, line := range strings.Split(group, "\n") {
 		for _, char := range line {
-			if _, present := givenAnswers[string(char)]; !present {
-				givenAnswers[string(char)] = types.Nil{} // make it present
+			if _, present := givenAnswers[char]; !present {
+				givenAnswers[char] = types.Nil{} // make it present
 				count++
 			}
 		}
