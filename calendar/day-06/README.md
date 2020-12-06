@@ -57,6 +57,6 @@ It seems like I can fulfill my personal goal of grasping the problems better (le
 
 Nothing else really to add to this recap. Very straight forward solutions.
 
-My solve-times are okay-ish... I guess everyone else was having an easy time as well:
+My solve-times are okay-ish... I guess everyone was having an easy time as well:
 - `00:08:39` for part 1 (#3028)
 - `00:16:36` for part 2 (#2899)
