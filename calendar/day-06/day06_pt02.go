@@ -25,8 +25,8 @@ func answersPart2(group string) int{
 	lines := strings.Split(group, "\n")
 
 	for _, line := range lines {
-		for _, char := range line {
-			givenAnswers[string(char)] += 1
+		for _, question := range line {
+			givenAnswers[string(question)] += 1
 		}
 	}
 

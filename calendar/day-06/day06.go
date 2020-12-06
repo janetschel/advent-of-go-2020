@@ -25,9 +25,9 @@ func answers(group string) int{
 	count := 0
 
 	for _, line := range strings.Split(group, "\n") {
-		for _, char := range line {
-			if _, present := givenAnswers[char]; !present {
-				givenAnswers[char] = types.Nil{} // make it present
+		for _, question := range line {
+			if _, present := givenAnswers[question]; !present {
+				givenAnswers[question] = types.Nil{} // make it present
 				count++
 			}
 		}
