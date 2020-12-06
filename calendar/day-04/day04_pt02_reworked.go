@@ -78,16 +78,10 @@ func validPassport(p Passport) bool {
 		"pid": regex.Match(p.pid, "^\\d{9}$"),
 	}
 
-	valid := maps.All(checks, true)
-	return valid
+	return maps.All(checks, true)
 }
 
 func validHeight(hgt Height) bool {
-	if hgt.unit == "cm" && 150 <= hgt.hgt && hgt.hgt <= 193 {
-		return true
-	} else if hgt.unit == "in" && 59 <= hgt.hgt && hgt.hgt <= 76 {
-		return true
-	}
-
-	return false
+	return hgt.unit == "cm" && 150 <= hgt.hgt && hgt.hgt <= 193 ||
+		   hgt.unit == "in" && 59 <= hgt.hgt && hgt.hgt <= 76
 }
