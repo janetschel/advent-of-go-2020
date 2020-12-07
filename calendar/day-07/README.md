@@ -39,7 +39,7 @@ My solution for **part 1** is `235`.
 My solution for **part 2** is `158493`.
 
 ## Recap
-The whole problem was a mess for me... I wasn't to forget it asap. 🤐
+The whole problem was a mess for me... I want to forget it asap. 🤐
 
 I started looking at the input trying to figure out how in the hell I want to parse it and consider every edge-case there might be.  
 Keep in mind, I'm - at this point - just glancing over the input, so I don't actually know how many edge-cases there are.
