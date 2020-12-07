@@ -52,7 +52,7 @@ Want to see my regex? Of course, here is the beauty:
 ^((?:\w+)? \w+) bags contain (?:(no other bags.)|((?:(?:(?:\d+) (?:(?:\w+)? \w+) (?:bags|bag), )|(?:(?:\d+) (?:(?:\w+)? \w+) (?:bags|bag)\.))*))$
 ```
 
-And here is another, because I couldn't manage to fit it in one... *(damn you, capture groups!)*
+And here is another, because I couldn't manage to fit it in one... *([damn you, capture groups!](https://imgflip.com/i/4pe94l))*
 
 ```regexp
 ^(\d+) ((?:\w)*(?: |)\w+) (?:bags|bag)$
