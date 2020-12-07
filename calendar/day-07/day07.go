@@ -33,9 +33,15 @@ func (i *InnerBag) init(color string, times int) {
 }
 
 // Solution begins here
+// Solution for part 1 and 2 are in the same file since they need the same functions and structs, so splitting them up
+// does not make very much sense
 func main() {
 	input := files.ReadFile(7, "\n")
-	println("Solution part 1:", solve(input))
+	solutionPart1 := solve(input)
+	solutionPart2 := solvePart2(input)
+
+	println("Solution part 1:", solutionPart1)
+	println("Solution part 2:", solutionPart2)
 }
 
 func solve(input []string) int {
@@ -50,13 +56,37 @@ func solve(input []string) int {
 	return len(unique)
 }
 
-func search(bags []Bag, searchFor string, known *map[string]types.Nil) {
-	containing := bagsContainedIn(bags, searchFor)
+func solvePart2(input []string) int {
+	bags := make([]Bag, 0)
+
+	for _, str := range input {
+		bags = append(bags, createBagFromString(str))
+	}
+
+	return searchPart2(bags, "shiny gold")
+}
+
+func search(bags []Bag, targetColor string, known *map[string]types.Nil) {
+	containing := bagsContainedIn(bags, targetColor)
 
 	for key := range containing {
 		search(bags, key, known)
 		(*known)[key] = types.Nil{}
 	}
+}
+
+func searchPart2(bags []Bag, targetColor string) int {
+	result := 0
+
+	for _, outer := range bags {
+		for _, inner := range outer.contains {
+			if outer.color == targetColor {
+				result += inner.times + inner.times * searchPart2(bags, inner.color)
+			}
+		}
+	}
+
+	return result
 }
 
 func bagsContainedIn(bags []Bag, targetColor string) map[string]types.Nil {
