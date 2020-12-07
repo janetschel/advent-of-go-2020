@@ -49,7 +49,7 @@ As you can probably guess, writing up my regex took me 75 minutes. I didn't want
 
 Want to see my regex? Of course, here is the beauty:
 ```regexp
-^((?:\w+)? \\w+) bags contain (?:(no other bags.)|((?:(?:(?:\d+) (?:(?:\w+)? \w+) (?:bags|bag), )|(?:(?:\d+) (?:(?:\w+)? \w+) (?:bags|bag)\.))*))$
+^((?:\w+)? \w+) bags contain (?:(no other bags.)|((?:(?:(?:\d+) (?:(?:\w+)? \w+) (?:bags|bag), )|(?:(?:\d+) (?:(?:\w+)? \w+) (?:bags|bag)\.))*))$
 ```
 
 And here is another, because I couldn't manage to fit it in one... *(damn you, capture groups!)*
