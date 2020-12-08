@@ -5,13 +5,6 @@ import (
 	"strings"
 )
 
-// Since I think we will need this handheld computer more often in AoC 2020, I refactored it to allow easy
-// modifications and extensions of the features of this computer. Intcode v2?
-
-// Run computer.execute() to start the execution of the computer
-// Make changes to it if the problem asks for it
-
-// Known instructions to the handheld computer
 type InstructionCommand int
 const (
 	NOP  = iota
@@ -19,7 +12,6 @@ const (
 	JMP
 )
 
-// This function returns the string representation of the enum values
 func (instruction InstructionCommand) value() string {
 	return [...]string{
 		"nop", // NOP
@@ -28,10 +20,9 @@ func (instruction InstructionCommand) value() string {
 	}[instruction]
 }
 
-// Struct of actual Instruction to be executed for the handheld computer
 type Instruction struct {
 	instructionCommand InstructionCommand
-	value int
+	value              int
 }
 
 func (instruction *Instruction) init(command string, value int) {
@@ -58,7 +49,7 @@ type Computer struct {
 
 func createComputer(input []string) Computer {
 	computer := new(Computer)
-	computer.pointer = 0 // we start at the beginning
+	computer.pointer = 0
 
 	for _, instructionString := range input {
 		parts := strings.Split(instructionString, " ")
@@ -72,7 +63,6 @@ func createComputer(input []string) Computer {
 	return *computer
 }
 
-// Returns accumulator after execution of every instruction
 func (computer *Computer) execute() int {
 	accumulator := 0
 
@@ -85,7 +75,6 @@ func (computer *Computer) execute() int {
 	return accumulator
 }
 
-// This function returns (deltaAcc, deltaPointer)
 func runComputer(instruction Instruction) (int, int) {
 	command := instruction.instructionCommand
 	value := instruction.value
@@ -98,6 +87,5 @@ func runComputer(instruction Instruction) (int, int) {
 		return value, 0
 	}
 
-	// Should never execute, since we stop invalid instructions from entering the computer alltogether
-	panic("Not a valid instruction.. panice")
+	panic("Not a valid instruction.. panic")
 }
