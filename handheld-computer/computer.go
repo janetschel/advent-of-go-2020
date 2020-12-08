@@ -12,7 +12,7 @@ const (
 	JMP
 )
 
-func (instruction InstructionCommand) value() string {
+func (instruction InstructionCommand) Value() string {
 	return [...]string{
 		"nop", // NOP
 		"acc", // ACC
@@ -47,7 +47,7 @@ type Computer struct {
 	instructions []Instruction
 }
 
-func createComputer(input []string) Computer {
+func CreateComputer(input []string) Computer {
 	computer := new(Computer)
 	computer.pointer = 0
 
@@ -63,7 +63,7 @@ func createComputer(input []string) Computer {
 	return *computer
 }
 
-func (computer *Computer) execute() int {
+func (computer *Computer) Execute() int {
 	accumulator := 0
 
 	for ; computer.pointer < len(computer.instructions); computer.pointer++ {
