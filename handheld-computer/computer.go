@@ -67,7 +67,7 @@ func (computer *Computer) Execute() int {
 	accumulator := 0
 
 	for ; computer.pointer < len(computer.instructions); computer.pointer++ {
-		deltaAcc, deltaPointer := runComputer(computer.instructions[computer.pointer])
+		deltaAcc, deltaPointer := runInstruction(computer.instructions[computer.pointer])
 		accumulator += deltaAcc
 		computer.pointer += deltaPointer
 	}
@@ -75,7 +75,7 @@ func (computer *Computer) Execute() int {
 	return accumulator
 }
 
-func runComputer(instruction Instruction) (int, int) {
+func runInstruction(instruction Instruction) (int, int) {
 	command := instruction.instructionCommand
 	value := instruction.value
 
