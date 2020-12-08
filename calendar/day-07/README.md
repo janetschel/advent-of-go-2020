@@ -52,7 +52,7 @@ Want to see my regex? Of course, here is the beauty:
 ^((?:\w+)? \w+) bags contain (?:(no other bags.)|((?:(?:(?:\d+) (?:(?:\w+)? \w+) (?:bags|bag), )|(?:(?:\d+) (?:(?:\w+)? \w+) (?:bags|bag)\.))*))$
 ```
 
-And here is another, because I couldn't manage to fit it in one... *(damn you, capture groups!)*
+And here is another, because I couldn't manage to fit it in one... *([damn you, capture groups!](https://imgflip.com/i/4pe94l))*
 
 ```regexp
 ^(\d+) ((?:\w)*(?: |)\w+) (?:bags|bag)$
@@ -61,7 +61,7 @@ And here is another, because I couldn't manage to fit it in one... *(damn you, c
 My first regex captures all the possible variaties of containing bags, the second regex parses them.  
 I know these regular expressions are not really performant and could probably be shortened a lot, but I won't ever touch those again.
 
-My solve-times for part 1 were subsequently (because of the regex) not very good. I - however - manage to do the second part after that really quickly, since I had a good datastructure already set up.  
+My solve-time for part 1 was subsequently (because of the regex) not very good. I - however - managed to do the second part after that really quickly, since I had a good datastructure already set up and the right idea right away (+1 for me).  
 My solve-times for this problem are:
 - `02:20:22` for part 1 (#9720)
 - `02:29:29` for part 2 (#7547)
