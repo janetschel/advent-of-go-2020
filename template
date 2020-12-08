@@ -5,7 +5,14 @@ import (
 )
 
 func main() {
-	// Add correct day and delimiter for automatic input fetch
-	input := files.ReadFile(0, "\n")
-	println(input)
+	input := files.ReadFile(x, "\n")
+	println(solvePartX(input))
+}
+
+func solvePartX(input []string) int {
+    result := 0
+
+
+
+    return result
 }
