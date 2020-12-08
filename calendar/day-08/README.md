@@ -67,7 +67,7 @@ I had to do virtually no parsing at all, and it was very fun to tackle the probl
 I - however - have **VERY STRONG** feelings, that this will be the `new Intcode` of 2020.
 
 Since last year I never really refactored my Intcode, I had many bugs in it.  
-This year, to counter this problem, I have not reworked my original solutions and just left them be, I however have written a complete new `computer.go` file (go have a look at it) which I can reuse to run the computer, debug it, and make easy changes to it.
+This year, to counter this problem, I have not reworked my original solutions and just left them be, I however have written a complete new `computer.go` file ([go have a look at it](https://github.com/janetschel/advent-of-go-2020/tree/main/handheld-computer)) which I can reuse to run the computer, debug it, and make easy changes to it.
 
 I hope this work pays off this year 😉
 
