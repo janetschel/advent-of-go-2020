@@ -20,7 +20,7 @@ nop +100
 
 Stepping through each instruction, the accumulator at the end will be 0, since we add and subtract 10 from it, and `nop` does nothing.
 
-Suppose are more complex set of instructions:
+Suppose a more complex set of instructions:
 ```
 nop +0
 acc +1
