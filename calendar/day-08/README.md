@@ -20,7 +20,7 @@ nop +100
 
 Stepping through each instruction, the accumulator at the end will be 0, since we add and subtract 10 from it, and `nop` does nothing.
 
-Suppose are more complex set of instructions:
+Suppose a more complex set of instructions:
 ```
 nop +0
 acc +1
@@ -47,11 +47,11 @@ acc +6  |
 ```
 
 Once an instruction is visited twice, we know the computer will never halt, since we enter an infinite loop of repeating instructions.  
-The problem here ist, that we visit the second line `acc +1` twice, so the computer will **never halt**.
+The problem here is, that we visit the second line `acc +1` twice, so the computer will **never halt**.
 
 For **part 1** we need to find the value in the accumulator **right before** an instruction is executed the second time.
 
-For **part 2** we need to find an instruction - when changed - will result in the computer terminating, and giving back the result as an answer.  
+For **part 2** we need to find an instruction - when changed - will result in the computer terminating, and give back the result at the end as an answer.  
 Clarification:
 - The set of instructions in our input will run forever if we make no changes to it.
 - If we change **ONE** `nop` instruction to `jmp` **OR** `jmp` to `nop` somewhere in the code, our computer will halt successfully.
@@ -67,7 +67,7 @@ I had to do virtually no parsing at all, and it was very fun to tackle the probl
 I - however - have **VERY STRONG** feelings, that this will be the `new Intcode` of 2020.
 
 Since last year I never really refactored my Intcode, I had many bugs in it.  
-This year, to counter this problem, I have not reworked my original solutions and just left them be, I however have written a complete new `computer.go` file (go have a look at it) which I can reuse to run the computer, debug it, and make easy changes to it.
+This year, to counter this problem, I have not reworked my original solutions and just left them be, I however have written a complete new `computer.go` file ([go have a look at it](https://github.com/janetschel/advent-of-go-2020/tree/main/handheld-computer)) which I can reuse to run the computer, debug it, and make easy changes to it.
 
 I hope this work pays off this year 😉
 
