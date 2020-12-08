@@ -47,7 +47,7 @@ acc +6  |
 ```
 
 Once an instruction is visited twice, we know the computer will never halt, since we enter an infinite loop of repeating instructions.  
-The problem here ist, that we visit the second line `acc +1` twice, so the computer will **never halt**.
+The problem here is, that we visit the second line `acc +1` twice, so the computer will **never halt**.
 
 For **part 1** we need to find the value in the accumulator **right before** an instruction is executed the second time.
 
