@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestFile1(t *testing.T) {
+func TestCorrectACC(t *testing.T) {
 	input := strings.Split(
 		"acc +10\n" +
 		"acc +10\n" +
@@ -22,7 +22,7 @@ func TestFile1(t *testing.T) {
 	validate(t, result, 110)
 }
 
-func TestFile2(t *testing.T) {
+func TestCorrectNOP(t *testing.T) {
 	input := strings.Split(
 		 "acc +20\n" +
 			"nop -10\n" +
@@ -35,7 +35,7 @@ func TestFile2(t *testing.T) {
 	validate(t, result, 20)
 }
 
-func TestFile3(t *testing.T) {
+func TestCorrectJMP(t *testing.T) {
 	input := strings.Split(
 		 "jmp 3\n" +
 			"acc +10\n" +
@@ -48,7 +48,7 @@ func TestFile3(t *testing.T) {
 	validate(t, result, 0)
 }
 
-func TestFile4(t *testing.T) {
+func TestCorrectACCAndJMP(t *testing.T) {
 	input := strings.Split(
 		 "acc +10\n" +
 			"acc +10\n" +
