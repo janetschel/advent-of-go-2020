@@ -51,7 +51,7 @@ The problem here is, that we visit the second line `acc +1` twice, so the comput
 
 For **part 1** we need to find the value in the accumulator **right before** an instruction is executed the second time.
 
-For **part 2** we need to find an instruction - when changed - will result in the computer terminating, and giving back the result as an answer.  
+For **part 2** we need to find an instruction - when changed - will result in the computer terminating, and give back the result at the end as an answer.  
 Clarification:
 - The set of instructions in our input will run forever if we make no changes to it.
 - If we change **ONE** `nop` instruction to `jmp` **OR** `jmp` to `nop` somewhere in the code, our computer will halt successfully.
