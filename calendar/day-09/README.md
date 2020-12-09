@@ -3,7 +3,8 @@
 
 For this problem we need to break some rudimentary encryption... it really does seem like [we're the bad guys](https://www.reddit.com/r/adventofcode/comments/k9481t/2020_day_8_are_we_the_bad_guys/).
 
-After that, each number you receive should be the sum of any two of the 25 immediately previous numbers. The two numbers will have different values, and there might be more than one such pair.
+For this problem, *preamble* amount of numbers (in our case `25`) are transmitted at the start.  
+After that, each number you receive should be the sum of any two of the `25` immediately previous numbers. The two numbers will have different values, and there might be more than one such pair.
 
 Suppose following input list with a *preamble* of `5`:
 ```
