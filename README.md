@@ -8,6 +8,9 @@ Please no Intcode..... *(doesn't look like it yet :))))))))*
 Use `make new` in the terminal to automatically create a new folder with the important files for the day.  
 These files are copied from the static-template folder. If you want to make any changes to the blueprint, do it there.
 
+## Info
+For python solutions check [Logxn/Advent-of-Code-2020](https://github.com/Logxn/Advent-of-Code-2020)
+
 ## Usage for fetch utils
 Keep in mind that these fetch utils **do not** request the input **again** if the input file already exists.  
 It will just use the existing file without making any HTTP requests, so we don't spam the API of https://adventofcode.com/
