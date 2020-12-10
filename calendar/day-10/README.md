@@ -65,4 +65,10 @@ My solve-times for this problem are:
 - `01:25:01` (an additional ~33 minutes) for part 2 (#4521)
 
 Let's hope I wake up on time tomorrow.  
->! And let's hope for some Intcode v2.0
+
+<details>
+  <summary>Annnnd...</summary>
+  Let's hope for some Intcode v2.0 action tomorrow.  
+  
+  I hope I didn't do <a href="https://github.com/janetschel/advent-of-go-2020/tree/main/handheld-computer">this</a> for nothing 🥴
+</details>
