@@ -32,3 +32,13 @@ func Peek(peek map[string]int) string {
 	// never reacher
 	return ""
 }
+
+func Has(has map[int]int, value int) bool {
+	for key := range has {
+		if key == value {
+			return true
+		}
+	}
+
+	return false
+}
