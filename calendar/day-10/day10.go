@@ -1,7 +1,5 @@
 package main
 
-
-/*
 import (
 	"advent-of-go-2020/utils/conv"
 	"advent-of-go-2020/utils/files"
@@ -38,4 +36,3 @@ func solvePart1(input []int) int {
 
 	return oneSteps * threeSteps
 }
-*/
