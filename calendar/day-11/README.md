@@ -41,7 +41,7 @@ My solution for **part 2** is `2100`.
 As I said in the problem statement, this day required us to basically program [Conway's Game of ](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) ~~Life~~ Seats.
 
 Pretty cool problem, and I really enjoyed solving it.  
-I actually had some problems to not index my array out of bounds in part 1, but came up with a solution pretty quick (I framed my array... pretty neat).  
+I actually had some problems to not index my array out of bounds in part 1, but came up with a solution pretty quick (I [framed](https://github.com/janetschel/advent-of-go-2020/blob/main/utils/slices/slices.go#L53) my array... pretty neat).  
 The requirements of **part 2** were very straight-forward for me and easy to implement.
 
 I had no problems of understanding the problem stated and read everything right the first time :)  
