@@ -1,6 +1,10 @@
 package slices
 
-import "regexp"
+import (
+	"fmt"
+	"regexp"
+	"strings"
+)
 
 func Unpack(slice []string, vars... *string) {
 	for i, str := range slice {
@@ -44,4 +48,45 @@ func Max(input []int) int {
 	}
 
 	return max
+}
+
+func Frame(slice []string) []string {
+	framed := make([]string, len(slice) + 1)
+	padding := strings.Repeat(".", len(slice[0]) + 2)
+
+	framed = append(framed, padding)
+	framed[0] = padding
+
+	for i := 1; i < len(slice) + 1; i++ {
+		framed[i] = fmt.Sprintf(".%s.", slice[i - 1])
+	}
+
+	return framed
+}
+
+func Equals(first []string, second []string) bool {
+	for i := 0; i < len(first); i++ {
+		if first[i] != second[i] {
+			return false
+		}
+	}
+
+	return true
+}
+
+func CountCharInSlice(slice []string, char string) int {
+	numSeats := 0
+	for _, element := range slice {
+		numSeats += strings.Count(element, char)
+	}
+
+	return numSeats
+}
+
+func IsValidRow(slice []string, index int) bool {
+	return index >= 0 && index < len(slice) - 1
+}
+
+func IsValidCol(slice []string, index int) bool {
+	return index >= 0 && index < len(slice[0]) - 1
 }
