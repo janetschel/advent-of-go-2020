@@ -75,18 +75,10 @@ func Equals(first []string, second []string) bool {
 }
 
 func CountCharInSlice(slice []string, char string) int {
-	numSeats := 0
+	numChars := 0
 	for _, element := range slice {
-		numSeats += strings.Count(element, char)
+		numChars += strings.Count(element, char)
 	}
 
-	return numSeats
-}
-
-func IsValidRow(slice []string, index int) bool {
-	return index >= 0 && index < len(slice) - 1
-}
-
-func IsValidCol(slice []string, index int) bool {
-	return index >= 0 && index < len(slice[0]) - 1
+	return numChars
 }
