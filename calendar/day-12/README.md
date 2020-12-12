@@ -55,4 +55,4 @@ The problem was - for day 12 - very easy, though. I have a feeling that the whol
 
 My solve-times for this problem are:
 - `00:50:42` for part 1 (#5864)
-- `01:10:41 ` for part 2 (#4529)
+- `01:10:41` for part 2 (#4529)
