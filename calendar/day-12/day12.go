@@ -68,9 +68,9 @@ func executeWaypointInstruction(instruction string, amount int, ship *Point, way
 	if instruction == "N" || instruction == "S" || instruction == "E" || instruction == "W" {
 		waypoint.move(amount, instruction)
 	} else if instruction == "R" {
-		waypoint.rotateAroundShip((amount / 90) % 4)
+		waypoint.rotateAroundShip((amount % 89) % 4)
 	} else if instruction == "L" {
-		waypoint.rotateAroundShip(((-amount / 90) + 4) % 4)
+		waypoint.rotateAroundShip(((-amount % 89) + 4) % 4)
 	} else if instruction == "F" {
 		ship.x += waypoint.x * amount
 		ship.y += waypoint.y * amount
