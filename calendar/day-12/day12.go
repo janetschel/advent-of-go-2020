@@ -3,126 +3,103 @@ package main
 import (
 	"advent-of-go-2020/utils/conv"
 	"advent-of-go-2020/utils/files"
+	"advent-of-go-2020/utils/maths"
 )
+
+type Point struct {
+	x, y int
+}
 
 func main() {
 	input := files.ReadFile(12, "\n")
-	println(solvePart1(input))
+	println("Ships Manhattan distance from (0, 0):", solvePart1(input))
+	println("Ships Manhattan distance from (0, 0) (pt. 2):", solvePart2(input))
 }
 
 func solvePart1(input []string) int {
-    x, y, facing := 0,0, "E"
-
-    for _, element := range input {
-		instruction := element[:1]
-		amount := conv.ToInt(element[1:])
-
-		x, y, facing = move(instruction, amount, facing, x, y)
+	ship := Point{
+		x: 0,
+		y: 0,
 	}
 
-	if x < 0 {
-		x *= -1
+	facing := 0
+	for _, element := range input {
+		facing = executeInstruction(element[:1], conv.ToInt(element[1:]), facing, &ship)
 	}
 
-	if y < 0 {
-		y *= - 1
-	}
-
-    return x+y
+	return maths.Abs(ship.x) + maths.Abs(ship.y)
 }
 
-func move(instruction string, amount int, facing string, x int, y int) (int, int, string) {
-	if instruction == "F" {
-		if facing == "E" {
-			x += amount
-		} else if facing == "N" {
-			y -= amount
-		} else if facing == "S" {
-			y += amount
-		} else if facing == "W"{
-			x -= amount
-		}
-	} else if instruction == "N" {
-		y -= amount
-	} else if instruction == "S" {
-		y += amount
-	} else if instruction == "E" {
-		x += amount
-	} else if instruction == "W" {
-		x -= amount
-	} else if instruction == "R" {
-		times := amount % 89
-
-		if facing == "E" {
-			if times == 1 {
-				facing = "S"
-			} else if times == 2 {
-				facing = "W"
-			} else if times == 3 {
-				facing = "N"
-			}
-		} else if facing == "S" {
-			if times == 1 {
-				facing = "W"
-			} else if times == 2 {
-				facing = "N"
-			} else if times == 3 {
-				facing = "E"
-			}
-		} else if facing == "N" {
-			if times == 1 {
-				facing = "E"
-			} else if times == 2 {
-				facing = "S"
-			} else if times == 3 {
-				facing = "W"
-			}
-		} else if facing == "W" {
-			if times == 1 {
-				facing = "N"
-			} else if times == 2 {
-				facing = "E"
-			} else if times == 3 {
-				facing = "S"
-			}
-		}
-	} else if instruction == "L" {
-		times := amount % 89
-		if facing == "E" {
-			if times == 1 {
-				facing = "N"
-			} else if times == 2 {
-				facing = "W"
-			} else if times == 3 {
-				facing = "S"
-			}
-		} else if facing == "S" {
-			if times == 1 {
-				facing = "E"
-			} else if times == 2 {
-				facing = "N"
-			} else if times == 3 {
-				facing = "W"
-			}
-		} else if facing == "N" {
-			if times == 1 {
-				facing = "W"
-			} else if times == 2 {
-				facing = "S"
-			} else if times == 3 {
-				facing = "E"
-			}
-		} else if facing == "W" {
-			if times == 1 {
-				facing = "S"
-			} else if times == 2 {
-				facing = "E"
-			} else if times == 3 {
-				facing = "N"
-			}
-		}
-
+func solvePart2(input []string) int {
+	ship := Point {
+		x: 0,
+		y: 0,
 	}
 
-	return x,y,facing
+	waypoint := Point {
+		x: 10,
+		y: -1,
+	}
+
+	for _, element := range input {
+		executeWaypointInstruction(element[:1], conv.ToInt(element[1:]), &ship, &waypoint)
+	}
+
+	return maths.Abs(ship.x) + maths.Abs(ship.y)
+}
+
+func executeInstruction(instruction string, amount int, facing int, ship *Point) int {
+	directions := []string {"E", "S", "W", "N"}
+
+	if instruction == "N" || instruction == "S" || instruction == "E" || instruction == "W" {
+		ship.move(amount, instruction)
+	} else if instruction == "F" {
+		ship.move(amount, directions[facing])
+	} else if instruction == "R" {
+		facing = (facing + (amount % 89)) % 4
+	} else if instruction == "L" {
+		facing = (facing - (amount % 89) + 4) % 4
+	}
+
+	return facing
+}
+
+func executeWaypointInstruction(instruction string, amount int, ship *Point, waypoint *Point) {
+	if instruction == "N" || instruction == "S" || instruction == "E" || instruction == "W" {
+		waypoint.move(amount, instruction)
+	} else if instruction == "R" {
+		waypoint.rotateAroundShip((amount / 90) % 4)
+	} else if instruction == "L" {
+		waypoint.rotateAroundShip(((-amount / 90) + 4) % 4)
+	} else if instruction == "F" {
+		ship.x += waypoint.x * amount
+		ship.y += waypoint.y * amount
+	}
+}
+
+func (point *Point) rotateAroundShip(amount int) {
+	if amount == 1 {
+		oldWaypointX := point.x
+		point.x = -point.y
+		point.y = oldWaypointX
+	} else if amount == 2 {
+		point.x = -point.x
+		point.y = -point.y
+	} else if amount == 3 {
+		oldWaypointX := point.x
+		point.x = point.y
+		point.y = -oldWaypointX
+	}
+}
+
+func (point *Point) move(amount int, direction string) {
+	if direction == "N" {
+		point.y -= amount
+	} else if direction == "S" {
+		point.y += amount
+	} else if direction == "E" {
+		point.x += amount
+	} else if direction == "W" {
+		point.x -= amount
+	}
 }
