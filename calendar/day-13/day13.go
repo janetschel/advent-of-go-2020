@@ -9,16 +9,14 @@ import (
 
 func main() {
 	input := files.ReadFile(13, "\n")
-	println(solvePart1(input))
+	println("Earliest bus I can take:", solvePart1(input))
 }
 
 func solvePart1(input []string) int {
-    earliestDep := conv.ToInt(input[0])
-    depTime := parseLine(input[1])
+    earliestDep, depTimes := conv.ToInt(input[0]), parseLine(input[1])
+    earliest, id := maths.MaxInt(), 0
 
-    earliest := 100000000000
-    id := 0
-    for _, element := range depTime {
+    for _, element := range depTimes {
     	curr := 0
     	for curr <= earliestDep {
     		curr += element
@@ -30,15 +28,13 @@ func solvePart1(input []string) int {
 		}
 	}
 
-	minutes := earliestDep - earliest
-    return maths.Abs(minutes) * id
+    return maths.Abs(earliestDep - earliest) * id
 }
 
 func parseLine(input string) []int {
-	split := strings.Split(input, ",")
 	result := make([]int, 0)
 
-	for _, element := range split {
+	for _, element := range strings.Split(input, ",") {
 		if element != "x" {
 			result = append(result, conv.ToInt(element))
 		}
