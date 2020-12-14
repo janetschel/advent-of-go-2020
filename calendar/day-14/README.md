@@ -30,7 +30,7 @@ For **part 2** the mask no longer changes the number, but the memory address in 
 For the answer for **part 2** we once again need to find the sum left in memory after we executed the program..
 
 My solution for **part 1** is `11884151942312`.  
-My solution for **part 1** is `2625449018811`.
+My solution for **part 2** is `2625449018811`.
 
 # Recap
 
