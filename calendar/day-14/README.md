@@ -41,7 +41,7 @@ I actually really liked today. I do notice the problems get harder each day, but
 
 **Part 1** was very straight forward for me, I had no problem understanding the problem stated and solved it fairly quickly. Nothing much to say.
 
-On the other hand, I hated **part 2** today. Not only because I didn't immediately catch on to the `XOR` action going on all of a sudden (yup - I missed that), but because of the permutations we needed to calculate for the memory addresses.  
+On the other hand, I hated **part 2** today. Not only because I didn't immediately catch on to the `"0 does not change anything"` action going on all of a sudden (yup - I missed that), but because of the permutations we needed to calculate for the memory addresses.  
 **Go** sadly does not offer any good libraries for generating permutations, so I needed to not only write my own one, but to also debug it... which cost precious time (almost an hour, since I wanted to make it as generic as possible [which is the next bad idea in Go]).
 
 After I had my permutations-generation up and running, the solution was actually also very straight-forward.  
