@@ -53,3 +53,6 @@ My solve-times, despite my problems listed, are actually not that bad... I mean 
 Here they are:
 - `00:26:22` for part 1 (#2377)
 - `01:37:52` for part 2 (#4037)
+
+Update: I don't feel as bad anymore for my solve time for **part 2**.  
+Even Google can't manage [their memory](https://www.google.com/amp/s/indianexpress.com/article/explained/google-outage-explained-what-really-happened-what-is-the-impact-7104863/lite/), so why should I 🤷🏼‍♂️
