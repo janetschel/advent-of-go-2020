@@ -42,3 +42,13 @@ func Has(has map[int]int, value int) bool {
 
 	return false
 }
+
+func Sum(toSum map[int64]int) int {
+	sum := 0
+
+	for _, element := range toSum {
+		sum += element
+	}
+
+	return sum
+}
