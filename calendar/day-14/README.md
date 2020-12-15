@@ -30,7 +30,7 @@ For **part 2** the mask no longer changes the number, but the memory address in 
 For the answer for **part 2** we once again need to find the sum left in memory after we executed the program..
 
 My solution for **part 1** is `11884151942312`.  
-My solution for **part 1** is `2625449018811`.
+My solution for **part 2** is `2625449018811`.
 
 # Recap
 
@@ -41,7 +41,7 @@ I actually really liked today. I do notice the problems get harder each day, but
 
 **Part 1** was very straight forward for me, I had no problem understanding the problem stated and solved it fairly quickly. Nothing much to say.
 
-On the other hand, I hated **part 2** today. Not only because I didn't immediately catch on to the `XOR` action going on all of a sudden (yup - I missed that), but because of the permutations we needed to calculate for the memory addresses.  
+On the other hand, I hated **part 2** today. Not only because I didn't immediately catch on to the `"0 does not change anything"` action going on all of a sudden (yup - I missed that), but because of the permutations we needed to calculate for the memory addresses.  
 **Go** sadly does not offer any good libraries for generating permutations, so I needed to not only write my own one, but to also debug it... which cost precious time (almost an hour, since I wanted to make it as generic as possible [which is the next bad idea in Go]).
 
 After I had my permutations-generation up and running, the solution was actually also very straight-forward.  
@@ -53,3 +53,6 @@ My solve-times, despite my problems listed, are actually not that bad... I mean 
 Here they are:
 - `00:26:22` for part 1 (#2377)
 - `01:37:52` for part 2 (#4037)
+
+Update: I don't feel as bad anymore for my solve time for **part 2**.  
+Even Google can't manage [their memory](https://www.google.com/amp/s/indianexpress.com/article/explained/google-outage-explained-what-really-happened-what-is-the-impact-7104863/lite/), so why should I 🤷🏼‍♂️
