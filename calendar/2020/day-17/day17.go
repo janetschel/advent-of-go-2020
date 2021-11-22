@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	input := files.ReadFile(inputDay, inputYear, "\n")
+	input := files.ReadFile(17, 2020, "\n")
 	println(solvePart1(input))
 	println(solvePart2(input))
 }

@@ -7,8 +7,8 @@ import (
 	"net/http"
 )
 
-func MakeRequest(day int) string {
-	url := fmt.Sprintf("https://adventofcode.com/2020/day/%v/input", day)
+func MakeRequest(day int, year int) string {
+	url := fmt.Sprintf("https://adventofcode.com/%v/day/%v/input", year, day)
 	req, err := http.NewRequest("GET", url, nil)
 
 	if err != nil {
