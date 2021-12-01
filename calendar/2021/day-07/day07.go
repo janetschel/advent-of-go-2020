@@ -1,7 +1,7 @@
 package main
 
 import (
-	"advent-of-go-2020/utils/files"
+	"advent-of-go/utils/files"
 )
 
 func main() {

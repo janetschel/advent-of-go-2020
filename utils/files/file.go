@@ -1,7 +1,7 @@
 package files
 
 import (
-	"advent-of-go-2020/utils/req"
+	"advent-of-go/utils/req"
 	"fmt"
 	"io/ioutil"
 	"os"

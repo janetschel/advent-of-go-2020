@@ -65,7 +65,7 @@ const (
 ```golang
 package main
 
-import "advent-of-go-2020/utils"
+import "advent-of-go/utils"
 
 func main() {
   input := utils.ReadFile(1, 2020, "\n")

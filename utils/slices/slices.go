@@ -82,3 +82,9 @@ func CountCharInSlice(slice []string, char string) int {
 
 	return numChars
 }
+
+func Swap(slice []int, i int, j int) {
+	tmp := slice[i]
+	slice[i] = slice[j]
+	slice[j] = tmp
+}

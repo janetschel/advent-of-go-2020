@@ -1,7 +1,7 @@
 package req
 
 import (
-	"advent-of-go-2020/secrets"
+	"advent-of-go/secrets"
 	"fmt"
 	"io/ioutil"
 	"net/http"
