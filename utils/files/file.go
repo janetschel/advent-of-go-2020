@@ -3,6 +3,7 @@ package files
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -11,16 +12,38 @@ import (
 
 // Reads content of the input file and returns it in an array, split by the specified delimiter
 // If the input file does not exist, it will be created
-func ReadFile(day int, year int, delimiter string) []string {
+func ReadFile(day int, year int, delimiter string, isTest bool) []string {
 	currentDay := strconv.Itoa(day)
 
 	if len(currentDay) == 1 {
 		currentDay = "0" + currentDay
 	}
+	testPrefix := ""
+	if isTest {
+		testPrefix = "test-"
+	}
 
-	filePath := fmt.Sprintf("calendar/%v/day-%v/puzzle-input.in", year, currentDay)
+	filePath := fmt.Sprintf("calendar/%v/day-%v/%vpuzzle-input.in", year, currentDay, testPrefix)
+	if isTest {
+		filePath = "test-puzzle-input.in"
+	}
 	if _, err := os.Stat(filePath); os.IsNotExist(err) {
-		createFile(day, year, filePath)
+		if isTest {
+			path, err := os.Getwd()
+			if err != nil {
+				log.Println(err)
+			}
+			fmt.Println(path)
+			writeErr := ioutil.WriteFile(filePath, []byte("asdf"), 0755)
+
+			if writeErr != nil {
+				panic(writeErr)
+			} else {
+				fmt.Println("INFO: File successfully created")
+			}
+		} else {
+			createFile(day, year, filePath)
+		}
 	} else {
 		fmt.Println("INFO: File already exists.. Will not create new one")
 	}

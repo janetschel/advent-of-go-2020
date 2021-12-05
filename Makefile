@@ -12,6 +12,8 @@ new:
 	cp test_template calendar/$(year)/day-$(date)/day$(date)_test.go; \
 	sed -i 's/inputDay/$(date)/g' calendar/$(year)/day-$(date)/day$(date).go; \
 	sed -i 's/inputYear/$(year)/g' calendar/$(year)/day-$(date)/day$(date).go; \
+	sed -i 's/inputDay/$(date)/g' calendar/$(year)/day-$(date)/day$(date)_test.go; \
+	sed -i 's/inputYear/$(year)/g' calendar/$(year)/day-$(date)/day$(date)_test.go; \
 	echo "Files successfully created.. happy hacking :)"
 	@echo "INFO: puzzle input still needs to be fetched"
 	@git add calendar/
