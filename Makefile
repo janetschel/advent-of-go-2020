@@ -9,6 +9,7 @@ new:
 	mkdir calendar/$(year); \
 	mkdir calendar/$(year)/day-$(date); \
 	cp template calendar/$(year)/day-$(date)/day$(date).go; \
+	cp test_template calendar/$(year)/day-$(date)/day$(date)_test.go; \
 	sed -i 's/inputDay/$(date)/g' calendar/$(year)/day-$(date)/day$(date).go; \
 	sed -i 's/inputYear/$(year)/g' calendar/$(year)/day-$(date)/day$(date).go; \
 	echo "Files successfully created.. happy hacking :)"
