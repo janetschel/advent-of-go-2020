@@ -12,7 +12,7 @@ func Gcd(first int, second int) int {
 	var div int
 
 	for i := 1; i <= first && i <= second; i++ {
-		if first % i==0 && second % i==0 {
+		if first%i == 0 && second%i == 0 {
 			div = i
 		}
 	}
@@ -21,5 +21,5 @@ func Gcd(first int, second int) int {
 }
 
 func MaxInt() int {
-	return int(^uint(0)  >> 1)
+	return int(^uint(0) >> 1)
 }

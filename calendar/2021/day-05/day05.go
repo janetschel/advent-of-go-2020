@@ -8,11 +8,11 @@ import (
 	"tblue-aoc-2021/utils/files"
 )
 
-type Pair struct {
+type pair struct {
 	x, y int
 }
-type Line struct {
-	start, end Pair
+type line struct {
+	start, end pair
 }
 
 func main() {
@@ -22,28 +22,28 @@ func main() {
 }
 
 func solvePart1(input []string) int {
-	lines := parseLines(input)
+	lines := parselines(input)
 	// filter out non simple lines
-	simpleLines := []Line{}
+	simplelines := []line{}
 	for _, line := range lines {
 		if line.start.x == line.end.x || line.start.y == line.end.y {
-			simpleLines = append(simpleLines, line)
+			simplelines = append(simplelines, line)
 		}
 	}
 
-	plotMap := createPlotMap(simpleLines)
+	plotMap := createPlotMap(simplelines)
 
 	return countSharedPoints(plotMap)
 }
 
 func solvePart2(input []string) int {
-	lines := parseLines(input)
+	lines := parselines(input)
 	plotMap := createPlotMap(lines)
 	return countSharedPoints(plotMap)
 }
 
-func parseLines(input []string) []Line {
-	lines := []Line{}
+func parselines(input []string) []line {
+	lines := []line{}
 	for _, val := range input {
 		pointsStrings := strings.Split(val, " -> ")
 		startPointString := strings.Split(pointsStrings[0], ",")
@@ -52,12 +52,12 @@ func parseLines(input []string) []Line {
 		startY, _ := strconv.Atoi(startPointString[1])
 		endX, _ := strconv.Atoi(endPointString[0])
 		endY, _ := strconv.Atoi(endPointString[1])
-		line := Line{
-			start: Pair{
+		line := line{
+			start: pair{
 				x: startX,
 				y: startY,
 			},
-			end: Pair{
+			end: pair{
 				x: endX,
 				y: endY,
 			},
@@ -68,7 +68,7 @@ func parseLines(input []string) []Line {
 	return lines
 }
 
-func createPlotMap(lines []Line) map[string]int {
+func createPlotMap(lines []line) map[string]int {
 	plotMap := make(map[string]int)
 	for _, line := range lines {
 		if line.start.y == line.end.y {
@@ -78,7 +78,7 @@ func createPlotMap(lines []Line) map[string]int {
 				basePoint = line.end
 			}
 			for i := 0; i <= int(math.Abs(float64(line.end.x-line.start.x))); i++ {
-				currentPoint := Pair{
+				currentPoint := pair{
 					x: basePoint.x + i,
 					y: basePoint.y,
 				}
@@ -93,7 +93,7 @@ func createPlotMap(lines []Line) map[string]int {
 				basePoint = line.end
 			}
 			for i := 0; i <= int(math.Abs(float64(line.end.y-line.start.y))); i++ {
-				currentPoint := Pair{
+				currentPoint := pair{
 					x: basePoint.x,
 					y: basePoint.y + i,
 				}
@@ -110,7 +110,7 @@ func createPlotMap(lines []Line) map[string]int {
 				yVal = -1
 			}
 			for i := 0; i <= int(math.Abs(float64(line.end.x-line.start.x))); i++ {
-				currentPoint := Pair{
+				currentPoint := pair{
 					x: line.start.x + (i * xVal),
 					y: line.start.y + (i * yVal),
 				}
@@ -128,7 +128,7 @@ func countSharedPoints(m map[string]int) int {
 	count := 0
 	for _, value := range m {
 		if value > 1 {
-			count += 1
+			count++
 		}
 	}
 	return count
