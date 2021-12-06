@@ -20,7 +20,7 @@ func solvePart1(input []string) int {
 	numIncreases := 0
 	for i := 1; i < len(numberInput); i++ {
 		if numberInput[i-1] < numberInput[i] {
-			numIncreases += 1
+			numIncreases++
 		}
 	}
 
@@ -38,7 +38,7 @@ func solvePart2(input []string) int {
 		firstSum := numberInput[i-2] + numberInput[i-1] + numberInput[i]
 		secondSum := numberInput[i-1] + numberInput[i] + numberInput[i+1]
 		if firstSum < secondSum {
-			numIncreases += 1
+			numIncreases++
 		}
 	}
 

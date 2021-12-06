@@ -44,7 +44,7 @@ func buildFishesForDays(fishes []int, numDays int) []int {
 				newFishes++
 				fishes[f] = 6
 			} else {
-				fishes[f] -= 1
+				fishes[f]--
 			}
 		}
 		for j := 0; j < newFishes; j++ {

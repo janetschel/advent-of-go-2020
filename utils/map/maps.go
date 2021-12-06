@@ -1,7 +1,7 @@
 package maps
 
 func All(check map[string]bool, eq bool) bool {
-	for _, curr:= range check {
+	for _, curr := range check {
 		if curr != eq {
 			return false
 		}
@@ -25,7 +25,7 @@ func Pop(pop map[string]int) map[string]int {
 }
 
 func Peek(peek map[string]int) string {
-	for key, _ := range peek {
+	for key := range peek {
 		return key
 	}
 

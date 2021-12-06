@@ -6,7 +6,7 @@ import (
 	"tblue-aoc-2021/utils/files"
 )
 
-type Direction struct {
+type direction struct {
 	direction string
 	amount    int
 }
@@ -18,11 +18,11 @@ func main() {
 }
 
 func solvePart1(input []string) int {
-	directions := make([]Direction, len(input))
+	directions := make([]direction, len(input))
 	for i, v := range input {
 		s := strings.Split(v, " ")
 		intVar, _ := strconv.Atoi(s[1])
-		d := Direction{direction: s[0], amount: intVar}
+		d := direction{direction: s[0], amount: intVar}
 		directions[i] = d
 	}
 	vertical := 0
@@ -43,11 +43,11 @@ func solvePart1(input []string) int {
 }
 
 func solvePart2(input []string) int {
-	directions := make([]Direction, len(input))
+	directions := make([]direction, len(input))
 	for i, v := range input {
 		s := strings.Split(v, " ")
 		intVar, _ := strconv.Atoi(s[1])
-		d := Direction{direction: s[0], amount: intVar}
+		d := direction{direction: s[0], amount: intVar}
 		directions[i] = d
 	}
 	aim := 0

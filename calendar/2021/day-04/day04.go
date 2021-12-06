@@ -6,7 +6,7 @@ import (
 	"tblue-aoc-2021/utils/files"
 )
 
-type Space struct {
+type space struct {
 	value  string
 	marked bool
 }
@@ -23,7 +23,7 @@ func solvePart1(input []string) int {
 	finalVal := -1
 	for i, val := range drawnNumbers {
 		boards = markBoards(val, boards)
-		//printBoards(boards)
+
 		if i >= 4 {
 			boardIndex = checkBoards(boards)
 			if boardIndex >= 0 {
@@ -39,7 +39,7 @@ func solvePart1(input []string) int {
 func solvePart2(input []string) int {
 	drawnNumbers, boards := buildBoards(input)
 	finalVal := -1
-	lastBoard := [][]Space{}
+	lastBoard := [][]space{}
 	for i, val := range drawnNumbers {
 		boards = markBoards(val, boards)
 		if i >= 4 {
@@ -48,7 +48,7 @@ func solvePart2(input []string) int {
 				if boardIndex >= 0 {
 					finalVal, _ = strconv.Atoi(val)
 					lastBoard = boards[boardIndex]
-					ret := make([][][]Space, 0)
+					ret := make([][][]space, 0)
 					ret = append(ret, boards[:boardIndex]...)
 					boards = append(ret, boards[boardIndex+1:]...)
 				}
@@ -63,17 +63,17 @@ func solvePart2(input []string) int {
 	return finalVal * getUnmarkedSum(lastBoard)
 }
 
-func buildBoards(input []string) ([]string, [][][]Space) {
+func buildBoards(input []string) ([]string, [][][]space) {
 	drawnNumbers := strings.Split(input[0], ",")
-	boards := [][][]Space{}
+	boards := [][][]space{}
 	for i := 2; i < len(input); i += 6 {
-		board := [][]Space{}
+		board := [][]space{}
 		for j := i; j < i+5; j++ {
-			row := []Space{}
+			row := []space{}
 			splitString := strings.Split(input[j], " ")
 			for _, val := range splitString {
 				if val != "" {
-					space := Space{
+					space := space{
 						value:  val,
 						marked: false,
 					}
@@ -87,7 +87,7 @@ func buildBoards(input []string) ([]string, [][][]Space) {
 	return drawnNumbers, boards
 }
 
-func markBoards(val string, boards [][][]Space) [][][]Space {
+func markBoards(val string, boards [][][]space) [][][]space {
 	for _, board := range boards {
 		marked := false
 		for _, row := range board {
@@ -109,7 +109,7 @@ func markBoards(val string, boards [][][]Space) [][][]Space {
 	return boards
 }
 
-func checkBoards(boards [][][]Space) int {
+func checkBoards(boards [][][]space) int {
 	index := -1
 	for ind, board := range boards {
 		for i := 0; i < len(board); i++ {
@@ -137,7 +137,7 @@ func checkBoards(boards [][][]Space) int {
 	return index
 }
 
-func getUnmarkedSum(board [][]Space) int {
+func getUnmarkedSum(board [][]space) int {
 	sum := 0
 	for _, row := range board {
 		for _, space := range row {
@@ -150,7 +150,7 @@ func getUnmarkedSum(board [][]Space) int {
 	return sum
 }
 
-func printBoards(boards [][][]Space) {
+func printBoards(boards [][][]space) {
 	for _, board := range boards {
 		for _, row := range board {
 			rowStrVals := []string{}

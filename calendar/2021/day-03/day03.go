@@ -23,7 +23,7 @@ func solvePart1(input []string) int64 {
 	for _, binNum := range input {
 		for j, runeChar := range binNum {
 			if runeChar == '1' {
-				countOfOnes[j] += 1
+				countOfOnes[j]++
 			}
 		}
 	}
