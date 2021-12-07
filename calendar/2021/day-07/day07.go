@@ -22,7 +22,6 @@ func solvePart1(input []string) int {
 		numbers = append(numbers, numVal)
 	}
 	median := calcMedian(numbers)
-	println(median)
 
 	return calcTotalMoves(numbers, median)
 }
@@ -34,10 +33,10 @@ func solvePart2(input []string) int {
 		numVal, _ := strconv.Atoi(val)
 		numbers = append(numbers, numVal)
 	}
-	mean := calcMean(numbers)
-	println(mean)
-
-	return calcTotalMovesWithIncrease(numbers, mean)
+	floor, ceil := calcMean(numbers)
+	ceilVal := calcTotalMovesWithIncrease(numbers, ceil)
+	floorVal := calcTotalMovesWithIncrease(numbers, floor)
+	return int(math.Min(float64(ceilVal), float64(floorVal)))
 }
 
 func calcTotalMovesWithIncrease(positions []int, destination int) int {
@@ -69,15 +68,14 @@ func calcTotalMoves(positions []int, destination int) int {
 	return sum
 }
 
-func calcMean(n []int) int {
+func calcMean(n []int) (int, int) {
 	total := 0
 
 	for _, v := range n {
 		total += v
 	}
-	println(float64(total) / float64(len(n)))
 
 	// IMPORTANT: return was rounded!
-	return int(math.Floor(float64(total) / float64(len(n))))
+	return int(math.Floor(float64(total) / float64(len(n)))), int(math.Ceil(float64(total) / float64(len(n))))
 
 }
