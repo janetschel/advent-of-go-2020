@@ -92,5 +92,5 @@ func (set Set) String() string {
 		str += fmt.Sprintf("'%s', ", element)
 	}
 
-	return str[:len(str) - 2] + " }"
+	return str[:len(str)-2] + " }"
 }

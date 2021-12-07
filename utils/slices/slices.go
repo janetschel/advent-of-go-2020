@@ -6,13 +6,13 @@ import (
 	"strings"
 )
 
-func Unpack(slice []string, vars... *string) {
+func Unpack(slice []string, vars ...*string) {
 	for i, str := range slice {
 		*vars[i] = str
 	}
 }
 
-func ParseLine(line string, splitOn string, vars... *string) {
+func ParseLine(line string, splitOn string, vars ...*string) {
 	regex := regexp.MustCompile(splitOn)
 	Unpack(regex.Split(line, -1), vars...)
 }
@@ -51,14 +51,14 @@ func Max(input []int) int {
 }
 
 func Frame(slice []string) []string {
-	framed := make([]string, len(slice) + 1)
-	padding := strings.Repeat(".", len(slice[0]) + 2)
+	framed := make([]string, len(slice)+1)
+	padding := strings.Repeat(".", len(slice[0])+2)
 
 	framed = append(framed, padding)
 	framed[0] = padding
 
-	for i := 1; i < len(slice) + 1; i++ {
-		framed[i] = fmt.Sprintf(".%s.", slice[i - 1])
+	for i := 1; i < len(slice)+1; i++ {
+		framed[i] = fmt.Sprintf(".%s.", slice[i-1])
 	}
 
 	return framed
