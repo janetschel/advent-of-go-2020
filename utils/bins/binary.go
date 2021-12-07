@@ -2,7 +2,7 @@ package bins
 
 import "strconv"
 
-func Pad (binary string, length int) string {
+func Pad(binary string, length int) string {
 	for len(binary) < length {
 		binary = "0" + binary
 	}

@@ -1,23 +1,13 @@
 package main
 
 import (
+	"tblue-aoc-2021/utils/files"
 	"testing"
 )
 
 func TestPart1SampleInput(t *testing.T) {
-	input := []string{
-		"199",
-		"200",
-		"208",
-		"210",
-		"200",
-		"207",
-		"240",
-		"269",
-		"260",
-		"263",
-	}
-	want := 7
+	input := files.ReadFile(07, 2021, "\n", true)
+	want := 37
 	count := solvePart1(input)
 	if count != want {
 		t.Fatalf(`solvePart1(input) = %v, want match for %#v`, count, want)
@@ -25,19 +15,8 @@ func TestPart1SampleInput(t *testing.T) {
 }
 
 func TestPart2SampleInput(t *testing.T) {
-	input := []string{
-		"199",
-		"200",
-		"208",
-		"210",
-		"200",
-		"207",
-		"240",
-		"269",
-		"260",
-		"263",
-	}
-	want := 5
+	input := files.ReadFile(07, 2021, "\n", true)
+	want := 168
 	count := solvePart2(input)
 	if count != want {
 		t.Fatalf(`solvePart2(input) = %v, want match for %#v`, count, want)

@@ -150,20 +150,20 @@ func getUnmarkedSum(board [][]space) int {
 	return sum
 }
 
-func printBoards(boards [][][]space) {
-	for _, board := range boards {
-		for _, row := range board {
-			rowStrVals := []string{}
-			for _, space := range row {
-				if space.marked {
-					rowStrVals = append(rowStrVals, space.value+"x")
-				} else {
-					rowStrVals = append(rowStrVals, space.value)
+// func printBoards(boards [][][]space) {
+// 	for _, board := range boards {
+// 		for _, row := range board {
+// 			rowStrVals := []string{}
+// 			for _, space := range row {
+// 				if space.marked {
+// 					rowStrVals = append(rowStrVals, space.value+"x")
+// 				} else {
+// 					rowStrVals = append(rowStrVals, space.value)
 
-				}
-			}
-			println(strings.Join(rowStrVals, ","))
-		}
-		println("------------------")
-	}
-}
+// 				}
+// 			}
+// 			println(strings.Join(rowStrVals, ","))
+// 		}
+// 		println("------------------")
+// 	}
+// }
