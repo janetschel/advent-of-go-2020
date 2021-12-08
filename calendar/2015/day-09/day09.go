@@ -99,32 +99,12 @@ func buildNodeList(input []string) []string {
 }
 
 func buildPermutations(nodes []int) [][]int {
-	length := len(nodes)
-	initial := make([]int, length)
-	copy(initial, nodes)
-	generatedPermutations := [][]int { initial }
-	indexes := make([]int, length)
-
-	i := 0
-	for i < length {
-		if indexes[i] < i {
-			if i % 2 == 0 {
-				slices.Swap(nodes, 0, i)
-			} else {
-				slices.Swap(nodes, indexes[i], i)
-			}
-			perm := make([]int, length)
-			copy(perm, nodes)
-			generatedPermutations = append(generatedPermutations, perm)
-			indexes[i] = indexes[i] + 1
-			i = 0
-		} else {
-			indexes[i] = 0
-			i++
-		}
+	permutations := slices.GeneratePermutations(nodes)
+	results := make([][]int, len(permutations))
+	for i := range results {
+		results[i] = permutations[i]
 	}
-
-	return generatedPermutations
+	return results
 }
 
 func calculatePathLength(path []int, matrix [][]int) int {
