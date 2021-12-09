@@ -44,7 +44,6 @@ func sumLowPoints(heightMap [][]int) int {
 	for i, val := range heightMap {
 		for j, h := range val {
 			if checkLowPoint(heightMap, i, j) {
-				println(h)
 				sum += h + 1
 			}
 		}
