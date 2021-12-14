@@ -40,6 +40,21 @@ func Contains(slice []string, word string) bool {
 	return false
 }
 
+func ContainsGeneric(slice interface{}, item interface{}) bool {
+	if reflect.TypeOf(slice).Kind() != reflect.Slice {
+		panic("Slice is not a slice")
+	}
+
+	s := reflect.ValueOf(slice)
+	for i := 0; i < s.Len(); i++ {
+		if s.Index(i).Interface() == item {
+			return true
+		}
+	}
+
+	return false
+}
+
 func Max(input []int) int {
 	max := 0
 	for _, element := range input {
