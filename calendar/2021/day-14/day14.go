@@ -13,12 +13,6 @@ func main() {
 }
 
 func solvePart1(input []string) int64 {
-	/* template, rules := parseInput(input)
-	for i := 0; i < 10; i++ {
-		template = performPairInsertions(template, rules)
-	}
-
-	return scorePolymer(template) */
 	template, rules := parseInput(input)
 	initial := template
 	pairs := makePairs(template)
