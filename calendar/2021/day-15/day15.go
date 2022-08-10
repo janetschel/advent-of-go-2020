@@ -26,7 +26,7 @@ func solvePart1(input []string) int {
 func solvePart2(input []string) int {
 	start := time.Now()
 	grid := parseInput(input)
-	result := dijkstraPriorityQueue(grid, 5) // dijkstraPriorityQueue(grid, 5)
+	result := dijkstraPriorityQueue(grid, 5)
 	elapsed := time.Since(start)
 	fmt.Printf("Part 2 took %s to run\n", elapsed)
 	return result
@@ -128,57 +128,6 @@ func dijkstra(grid [][]int, multiplier int) int {
 	}
 
 	return dist[target]
-}
-
-func reconstructPath(cameFrom map[string]string, current string, grid [][]int) int {
-	totalPath := 0
-	_, inMap := cameFrom[current]
-	for inMap {
-		current, inMap = cameFrom[current]
-		totalPath += getRisk(current, grid)
-	}
-	return totalPath
-}
-
-func aStar(grid [][]int, multiplier int) int {
-	lenX, lenY := len(grid[0])*multiplier, len(grid)*multiplier
-	target, source := getCoordsKey(lenX-1, lenY-1), getCoordsKey(0, 0)
-
-	openSet := make(priorityqueue.PriorityQueue, 0)
-	heap.Push(&openSet, &priorityqueue.Item{Priority: 0, Value: source})
-
-	gScore, fScore, cameFrom := map[string]int{}, map[string]int{}, map[string]string{}
-	for y := 0; y < lenY; y++ {
-		for x := 0; x < lenX; x++ {
-			v := getCoordsKey(x, y)
-			if v != source {
-				gScore[v], fScore[v] = math.MaxInt, math.MaxInt
-			} else {
-				gScore[v], fScore[v] = 0, getRisk(v, grid)
-			}
-		}
-	}
-
-	for openSet.Len() > 0 {
-		current := heap.Pop(&openSet).(*priorityqueue.Item)
-		if current.Value == target {
-			return reconstructPath(cameFrom, current.Value, grid)
-		}
-		neighbors := getNeighbors(current.Value, grid, multiplier)
-		for _, neighbor := range neighbors {
-			tentativeGScore := gScore[current.Value] + getRisk(neighbor, grid)
-			if tentativeGScore < gScore[neighbor] {
-				cameFrom[neighbor] = current.Value
-				gScore[neighbor] = tentativeGScore
-				fScore[neighbor] = tentativeGScore + getRisk(neighbor, grid)
-				if !openSet.Has(neighbor) {
-					heap.Push(&openSet, &priorityqueue.Item{Value: neighbor})
-				}
-			}
-		}
-	}
-
-	return 0
 }
 
 func getNeighbors(key string, grid [][]int, multiplier int) []string {

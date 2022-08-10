@@ -4,6 +4,11 @@ import (
 	"math"
 )
 
+// Pow is a convenience function for ints using math.Pow
+func Pow(base int, exp int) int {
+	return int(math.Pow(float64(base), float64(exp)))
+}
+
 // Abs returns the absolute value of the input
 func Abs(number int) int {
 	if number < 0 {
@@ -89,4 +94,20 @@ func SumOfDivisors(n int) int {
 		sumOfDivisors *= sum
 	}
 	return sumOfDivisors
+}
+
+// Max is a convenience function for max with ints
+func Max(i int, j int) int {
+	if i >= j {
+		return i
+	}
+	return j
+}
+
+// Min is a convenience function for max with ints
+func Min(i int, j int) int {
+	if i <= j {
+		return i
+	}
+	return j
 }

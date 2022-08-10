@@ -15,6 +15,15 @@ func New() Set {
 	return *set
 }
 
+// Returns an iterator for items in the set
+func (set *Set) Iterator() []string {
+	keys := []string{}
+	for key := range set.elements {
+		keys = append(keys, key)
+	}
+	return keys
+}
+
 func (set *Set) Add(element string) {
 	if element != "" {
 		set.elements[element] = types.Nil{}
@@ -78,7 +87,7 @@ func (set *Set) Intersect(setToIntersectWith Set) Set {
 	resultSet := New()
 
 	for element := range set.elements {
-		if set.Has(element) != setToIntersectWith.Has(element) {
+		if set.Has(element) && setToIntersectWith.Has(element) {
 			resultSet.Add(element)
 		}
 	}
@@ -92,5 +101,5 @@ func (set Set) String() string {
 		str += fmt.Sprintf("'%s', ", element)
 	}
 
-	return str[:len(str) - 2] + " }"
+	return str[:len(str)-2] + " }"
 }
