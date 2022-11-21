@@ -2,7 +2,7 @@
 	"name": "Go",
 	"image": "mcr.microsoft.com/devcontainers/go:0-1-bullseye",
 	"runArgs": ["--env-file",".devcontainer/devcontainer.env"],
-	"postStartCommand": "git config --global gpg.program `which gpg`",
+	"postCreateCommand": "git config --global gpg.program `which gpg`",
 
 	// Configure tool-specific properties.
 	"customizations": {

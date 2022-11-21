@@ -2,6 +2,7 @@ package slices
 
 import (
 	"fmt"
+	"math"
 	"reflect"
 	"regexp"
 	"strings"
@@ -56,7 +57,7 @@ func ContainsGeneric(slice interface{}, item interface{}) bool {
 }
 
 func Max(input []int) int {
-	max := 0
+	max := math.MinInt
 	for _, element := range input {
 		if element > max {
 			max = element
@@ -67,7 +68,7 @@ func Max(input []int) int {
 }
 
 func Min(input []int) int {
-	min := 0
+	min := math.MaxInt
 	for _, element := range input {
 		if element < min {
 			min = element
