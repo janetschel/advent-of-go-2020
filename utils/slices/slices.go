@@ -56,6 +56,21 @@ func ContainsGeneric(slice interface{}, item interface{}) bool {
 	return false
 }
 
+func Mode(input []int) int {
+	counts := make(map[int]int)
+	for _, value := range input {
+		counts[value]++
+	}
+	maxCount, maxValue := 0, 0
+	for value, count := range counts {
+		if count > maxCount {
+			maxCount = count
+			maxValue = value
+		}
+	}
+	return maxValue
+}
+
 func Max(input []int) int {
 	max := math.MinInt
 	for _, element := range input {
@@ -203,6 +218,16 @@ func GenerateAllCombinations(items []int) [][]int {
 
 // IndexOf returns the index of the selected item or -1 if not present
 func IndexOf(item string, slice []string) int {
+	for i := range slice {
+		if slice[i] == item {
+			return i
+		}
+	}
+	return -1
+}
+
+// IndexOfInt returns the index of the selected item or -1 if not present
+func IndexOfInt(item int, slice []int) int {
 	for i := range slice {
 		if slice[i] == item {
 			return i

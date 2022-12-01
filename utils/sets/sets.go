@@ -30,6 +30,12 @@ func (set *Set) Add(element string) {
 	}
 }
 
+func (set *Set) AddRange(elements []string) {
+	for _, element := range elements {
+		set.Add(element)
+	}
+}
+
 func (set *Set) Remove(element string) {
 	if _, isInMap := set.elements[element]; isInMap {
 		delete(set.elements, element)
