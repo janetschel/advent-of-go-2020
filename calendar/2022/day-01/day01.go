@@ -2,6 +2,9 @@ package main
 
 import (
 	"advent-of-go/utils/files"
+	"advent-of-go/utils/slices"
+	"sort"
+	"strconv"
 )
 
 func main() {
@@ -11,17 +14,28 @@ func main() {
 }
 
 func solvePart1(input []string) int {
-	result := 0
-
-
-
-	return result
+	calories := calculateCalories(input)
+	return calories[len(calories) - 1]
 }
 
 func solvePart2(input []string) int {
-	result := 0
+	calories := calculateCalories(input)
 
+	return slices.Sum(calories[len(calories) - 3:])
+}
 
+func calculateCalories(input []string) []int {
+	calories, currentSum := []int{}, 0
+	for _, value := range input {
+		if value == "" {
+			calories = append(calories, currentSum)
+			currentSum = 0
+		} else {
+			calories, _ := strconv.Atoi(value)
+			currentSum += calories
+		}
+	}
 
-	return result
+	sort.Ints(calories)
+	return calories
 }
