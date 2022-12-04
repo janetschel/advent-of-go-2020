@@ -55,6 +55,11 @@ func Divisors(n int) []int {
 	return divisors
 }
 
+// IsPrime returns `true` if n is a prime number, otherwise false
+func IsPrime(n int) bool {
+	return len(PrimeFactors(n)) == 1
+}
+
 // PrimeFactors returns a map where the keys are the prime factors
 // of n and the values are the powers
 func PrimeFactors(n int) map[int]int {
@@ -110,4 +115,14 @@ func Min(i int, j int) int {
 		return i
 	}
 	return j
+}
+
+// DegreesToRadians converts an angle in degrees to radians
+func DegreesToRadians(degrees float64) float64 {
+	return degrees * (math.Pi / 180)
+}
+
+// RadiansToDegrees converts an angle in raidans to degrees
+func RadiansToDegrees(radians float64) float64 {
+	return radians * (180 / math.Pi)
 }

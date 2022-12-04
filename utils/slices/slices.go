@@ -2,6 +2,7 @@ package slices
 
 import (
 	"fmt"
+	"math"
 	"reflect"
 	"regexp"
 	"strings"
@@ -41,11 +42,14 @@ func Contains(slice []string, word string) bool {
 }
 
 func ContainsGeneric(slice interface{}, item interface{}) bool {
-	if reflect.TypeOf(slice).Kind() != reflect.Slice {
+	kind := reflect.TypeOf(slice).Kind()
+	if kind != reflect.Slice {
 		panic("Slice is not a slice")
 	}
 
 	s := reflect.ValueOf(slice)
+	println(s.Index(1).Interface())
+	println(item)
 	for i := 0; i < s.Len(); i++ {
 		if s.Index(i).Interface() == item {
 			return true
@@ -55,8 +59,23 @@ func ContainsGeneric(slice interface{}, item interface{}) bool {
 	return false
 }
 
+func Mode(input []int) int {
+	counts := make(map[int]int)
+	for _, value := range input {
+		counts[value]++
+	}
+	maxCount, maxValue := 0, 0
+	for value, count := range counts {
+		if count > maxCount {
+			maxCount = count
+			maxValue = value
+		}
+	}
+	return maxValue
+}
+
 func Max(input []int) int {
-	max := 0
+	max := math.MinInt
 	for _, element := range input {
 		if element > max {
 			max = element
@@ -67,7 +86,7 @@ func Max(input []int) int {
 }
 
 func Min(input []int) int {
-	min := 0
+	min := math.MaxInt
 	for _, element := range input {
 		if element < min {
 			min = element
@@ -202,6 +221,16 @@ func GenerateAllCombinations(items []int) [][]int {
 
 // IndexOf returns the index of the selected item or -1 if not present
 func IndexOf(item string, slice []string) int {
+	for i := range slice {
+		if slice[i] == item {
+			return i
+		}
+	}
+	return -1
+}
+
+// IndexOfInt returns the index of the selected item or -1 if not present
+func IndexOfInt(item int, slice []int) int {
 	for i := range slice {
 		if slice[i] == item {
 			return i

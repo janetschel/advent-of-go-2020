@@ -22,9 +22,14 @@ If you **want to make** another request to AOC in order to refresh your input fi
 
 In order for the fetch utils to work properly:
 
-- create a folder /secrets in the src/advent-of-go
-- place session.go inside this newly created folder
-- place your session-key inside session.go. You can find your session key in your session cookie when visiting the website
+- Set environment variable `ADVENT_OF_CODE_SESSION_TOKEN` to an Advent of Code session token. You can find your token in your session cookie when visiting the website
+- Or, if using dev containers, create or modify the `.devcontainers/devcontainer.env` file to include this variable:
+
+```
+ADVENT_OF_CODE_SESSION_TOKEN=<your session token>
+```
+
+> :red_circle: If migrating from a previous version with the session key in `session.go`, make sure to remove the key before pushing to prevent committing the session key. :red_circle: 
 
 Your project structure should look likes this:  
 
@@ -48,16 +53,6 @@ advent-of-go/
 │   └── session.go
 ├── Makefile 
 └── template    // <-- change this if you wish to modify your blueprint
-```
-
-`session.go` file:
-
-```golang
-package secrets
-
-const (
-  Session = "session=<your-session-key>"
-)
 ```
 
 ### Usage

@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	input := files.ReadFile(09, 2020, "\n")
+	input := files.ReadFile(9, 2020, "\n")
 	println(solvePart1(input))
 	println(solvePart2(input))
 }
