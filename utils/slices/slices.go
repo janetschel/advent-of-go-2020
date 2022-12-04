@@ -42,11 +42,14 @@ func Contains(slice []string, word string) bool {
 }
 
 func ContainsGeneric(slice interface{}, item interface{}) bool {
-	if reflect.TypeOf(slice).Kind() != reflect.Slice {
+	kind := reflect.TypeOf(slice).Kind()
+	if kind != reflect.Slice {
 		panic("Slice is not a slice")
 	}
 
 	s := reflect.ValueOf(slice)
+	println(s.Index(1).Interface())
+	println(item)
 	for i := 0; i < s.Len(); i++ {
 		if s.Index(i).Interface() == item {
 			return true

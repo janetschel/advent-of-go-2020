@@ -2,10 +2,8 @@ package main
 
 import (
 	"advent-of-go/utils/files"
-	"advent-of-go/utils/regex"
 	"advent-of-go/utils/slices"
 	"fmt"
-	"regexp"
 	"strconv"
 	"strings"
 )
