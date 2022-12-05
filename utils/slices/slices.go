@@ -238,3 +238,14 @@ func IndexOfInt(item int, slice []int) int {
 	}
 	return -1
 }
+
+// Reverse returns a slice in the reversed order of the input
+func Reverse[T comparable](input []T) []T {
+	reversed := make([]T, len(input))
+
+	for i, value := range input {
+		reversed[len(reversed) - i - 1] = value
+	}
+
+	return reversed
+}
