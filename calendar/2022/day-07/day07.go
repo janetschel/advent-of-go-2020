@@ -48,10 +48,9 @@ func parseInput(input []string) map[string]directory {
 	directories := map[string]directory{}
 
 	currentDirName := ""
-	parents := map[string]string{}
 	for _, output := range input {
 		if output == "$ cd .." {
-			currentDirName = parents[currentDirName]
+			currentDirName = directories[currentDirName].parentDirectory
 		} else if len(output) >= 5 && output[0:5] == "$ cd " {
 			suffix := "/"
 			dirBaseName := strings.Fields(output)[2]
@@ -68,7 +67,6 @@ func parseInput(input []string) map[string]directory {
 			// do nothing, start processing files and child directories next
 		} else if len(output) >= 4 && output[0:4] == "dir " {
 			dirName := currentDirName + strings.Fields(output)[1] + "/"
-			parents[dirName] = currentDirName
 			dir, hasDir := directories[dirName]
 			if !hasDir {
 				newSet := sets.New()
