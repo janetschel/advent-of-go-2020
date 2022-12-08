@@ -16,9 +16,7 @@ type directory struct {
 	parentDirectory string
 }
 
-var totalDiskSpace int = 70000000
-var necessaryFreeSpace int = 30000000
-var smallestDirectoryLimit int = 100000
+var smallestDirectoryLimit, totalDiskSpace, necessaryFreeSpace = 100000, 70000000, 30000000
 
 func main() {
 	input := files.ReadFile(7, 2022, "\n")
@@ -63,8 +61,6 @@ func parseInput(input []string) map[string]directory {
 				newSet := sets.New()
 				directories[currentDirName] = directory{name: currentDirName, nestedDirectoryNames: &newSet, files: map[string]int{} }
 			}
-		} else if output == "$ ls" {
-			// do nothing, start processing files and child directories next
 		} else if len(output) >= 4 && output[0:4] == "dir " {
 			dirName := currentDirName + strings.Fields(output)[1] + "/"
 			dir, hasDir := directories[dirName]
@@ -75,14 +71,13 @@ func parseInput(input []string) map[string]directory {
 				dir.parentDirectory = currentDirName
 			}
 			directories[currentDirName].nestedDirectoryNames.Add(dirName)
-		} else {
+		} else if output != "$ ls" {
 			// output line is a file name and size
 			size, name := parseFile(output)
 			fileSize, hasFile := directories[currentDirName].files[name]
 			if !hasFile {
 				directories[currentDirName].files[name] = size
 			} else {
-				directories[currentDirName].files[name] = size
 				panic(fmt.Sprintf("already processed file %s in dir %s, size %d vs existing size %d", name, currentDirName, size, fileSize))
 			}
 		}

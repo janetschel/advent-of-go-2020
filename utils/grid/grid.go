@@ -95,3 +95,14 @@ func RotateCoordsCounterclockwise(coords Coords, pivot Coords, degrees float64) 
 	y := (dx * sin) + (dy * cos) + float64(pivot.Y)
 	return Coords{ X: int(x), Y: int(y)}
 }
+
+// PerimeterSize returns an int of the number of points along the perimeter of the grid
+func PerimeterSize[T comparable](grid [][]T) int {
+	m, n := len(grid[0]), len(grid)
+	return (2 * (m - 1)) + (2 * (n - 1))
+}
+
+// IsInGrid determines if a given point is inside the bounds of a given grid
+func IsInGrid[T comparable](coords Coords, grid [][]T) bool {
+	return coords.X >= 0 && coords.Y >= 0 && coords.Y < len(grid) && coords.X < len(grid[coords.Y])
+}
