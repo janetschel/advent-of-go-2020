@@ -8,42 +8,29 @@ import (
 
 func main() {
 	input := files.ReadFile(8, 2022, "\n")
-	println(solvePart1(input))
-	println(solvePart2(input))
+	visible, maxScenicScore := solve(input)
+	println(visible)
+	println(maxScenicScore)
 }
 
-var directions []grid.Coords = []grid.Coords{ { X: 0, Y: -1 }, { X: 0, Y: 1 }, { X: -1, Y: 0 }, { X: 1, Y: 0 } }
-func solvePart1(input []string) int {
+func solve(input []string) (int, int) {
+	directions := []grid.Coords{ { X: 0, Y: -1 }, { X: 0, Y: 1 }, { X: -1, Y: 0 }, { X: 1, Y: 0 } }
 	trees := parseInput(input)
 	visible := grid.PerimeterSize(trees)
-
-	for y := 1; y < len(trees) - 1; y++ {
-		for x := 1; x < len(trees[y]) - 1; x++ {
-			tree := grid.Coords { X: x, Y: y }
-			isVisible := false
-			for i := 0; i < len(directions) && !isVisible; i++ {
-				isVisible, _ = visibilityFromDirection(tree, trees, directions[i])
-			}
-			if isVisible {
-				visible++
-			}
-		}
-	}
-
-	return visible
-}
-
-func solvePart2(input []string) int {
-	trees := parseInput(input)
 
 	maxScore := 0
 	for y := 1; y < len(trees) - 1; y++ {
 		for x := 1; x < len(trees[y]) - 1; x++ {
 			tree := grid.Coords { X: x, Y: y }
+			isVisible := false
 			score := 1
 			for i := 0; i < len(directions); i++ {
-				_, viewingDistance := visibilityFromDirection(tree, trees, directions[i])
+				visibility, viewingDistance := visibilityFromDirection(tree, trees, directions[i])
+				isVisible = isVisible || visibility
 				score *= viewingDistance
+			}
+			if isVisible {
+				visible++
 			}
 			if score > maxScore {
 				maxScore = score
@@ -51,7 +38,7 @@ func solvePart2(input []string) int {
 		}
 	}
 
-	return maxScore
+	return visible, maxScore
 }
 
 func parseInput(input []string) [][]int {

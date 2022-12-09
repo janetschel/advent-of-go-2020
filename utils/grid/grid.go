@@ -106,3 +106,8 @@ func PerimeterSize[T comparable](grid [][]T) int {
 func IsInGrid[T comparable](coords Coords, grid [][]T) bool {
 	return coords.X >= 0 && coords.Y >= 0 && coords.Y < len(grid) && coords.X < len(grid[coords.Y])
 }
+
+// ToString creates a unique string to represent coordinates
+func (c Coords) ToString() string {
+	return fmt.Sprintf("%d,%d", c.X, c.Y)
+}
