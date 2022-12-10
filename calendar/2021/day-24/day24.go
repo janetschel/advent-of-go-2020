@@ -7,92 +7,58 @@ import (
 	"strings"
 )
 
+type keyValues struct {
+	divide int
+	add int
+	offset int
+}
+
 func main() {
 	input := files.ReadFile(24, 2021, "\n")
-	println(solvePart1(input))
-	println(solvePart2(input))
+	part1, part2 := solve(input)
+	println(part1)
+	println(part2)
 }
 
-func solvePart1(input []string) int {
-	foundValidModelNumber := false
-	i := 99999999999999
-	for i >= 11111111111111 && !foundValidModelNumber {
-		modelNumber := fmt.Sprint(i)
-		if strings.Contains(modelNumber, "0") {
-			i--
-			continue
-		}
-		foundValidModelNumber = runProgram(input, modelNumber)
-		if foundValidModelNumber {
-			return i
-		}
-		fmt.Println(i)
-		i--
-	}
-	return 0
-}
-
-func solvePart2(input []string) int {
-	foundValidModelNumber := false
-	i := 11111111111111
-	for i <= 99999999999999 && !foundValidModelNumber {
-		modelNumber := fmt.Sprint(i)
-		if strings.Contains(modelNumber, "0") {
-			i++
-			continue
-		}
-		foundValidModelNumber = runProgram(input, modelNumber)
-		if foundValidModelNumber {
-			return i
-		}
-		i++
-	}
-	return 0
-}
-
-func runProgram(instructions []string, modelNumber string) bool {
-	modelNumberAsStr := strings.Split(modelNumber, "")
-	input := []int{}
-	for i := range modelNumberAsStr {
-		val, _ := strconv.Atoi(modelNumberAsStr[i])
-		input = append(input, val)
-	}
-	registers := map[string]int{"w": 0, "x": 0, "y": 0, "z": 0}
-	currentInput := 0
-	for _, inst := range instructions {
-		parts := strings.Fields(inst)
-		switch parts[0] {
-		case "inp":
-			registers[parts[1]] = input[currentInput]
-			currentInput++
-		case "add":
-			registers[parts[1]] += getB(parts[2], registers)
-		case "mul":
-			registers[parts[1]] *= getB(parts[2], registers)
-		case "div":
-			b := getB(parts[2], registers)
-			if b == 0 {
-				return false
-			}
-			registers[parts[1]] /= b
-		case "mod":
-			registers[parts[1]] %= getB(parts[2], registers)
-		case "eql":
-			if registers[parts[1]] == getB(parts[2], registers) {
-				registers[parts[1]] = 1
+func solve(input []string) (string, string) {
+	digits := map[int][2]int{}
+	kv := parseInput(input)
+	stack := [][2]int{}
+	for dig, inst := range kv {
+		if inst.divide == 1 {
+			stack = append([][2]int{{ dig, inst.offset}}, stack...)
+		} else {
+			sibling, add := stack[0][0], stack[0][1]
+			stack = stack[1:]
+			diff := add + inst.add
+			if diff < 0 {
+				digits[sibling] = [2]int{ (-1 * diff) + 1, 9}
+				digits[dig] = [2]int{1, 9 + diff}
 			} else {
-				registers[parts[1]] = 0
+				digits[sibling] = [2]int{1, 9 - diff}
+				digits[dig] = [2]int{1 + diff, 9}
 			}
 		}
 	}
-	return registers["z"] == 0
+	minStr, maxStr := "", ""
+	for i := 0; i < 14; i++ {
+		minStr += fmt.Sprint(digits[i][0])
+		maxStr += fmt.Sprint(digits[i][1])
+	}
+
+	return maxStr, minStr
 }
 
-func getB(b string, registers map[string]int) int {
-	bValue, isRegister := registers[b]
-	if isRegister {
-		return bValue
+func parseInput(input []string) [14]keyValues {
+	values := [14]keyValues{}
+
+	for i := 0; i < 14; i++ {
+		startingLine := 18 * i
+		div, _ := strconv.Atoi(strings.Fields(input[startingLine+4])[2])
+		check, _ := strconv.Atoi(strings.Fields(input[startingLine+5])[2])
+		offset, _ := strconv.Atoi(strings.Fields(input[startingLine+15])[2])
+		values[i] = keyValues{ divide: div, add: check, offset: offset }
 	}
-	bValue, _ = strconv.Atoi(b)
-	return bValue
+
+	return values
 }

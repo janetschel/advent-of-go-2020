@@ -4,6 +4,8 @@ import (
 	"advent-of-go/utils/maths"
 	"fmt"
 	"math"
+	"strconv"
+	"strings"
 )
 
 // Coords represents a coordinate in a two-dimensional grid
@@ -110,6 +112,14 @@ func IsInGrid[T comparable](coords Coords, grid [][]T) bool {
 // ToString creates a unique string to represent coordinates
 func (c Coords) ToString() string {
 	return fmt.Sprintf("%d,%d", c.X, c.Y)
+}
+
+// ParseCoords parses a coordinate set from the formatted string
+func ParseCoords(str string) Coords {
+	parts := strings.Split(str, ",")
+	x, _ := strconv.Atoi(parts[0])
+	y, _ := strconv.Atoi(parts[1])
+	return Coords{ X: x, Y: y }
 }
 
 // ManhattanDistance returns the Mannattan distance between two coords (orthogonal)
