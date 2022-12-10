@@ -111,3 +111,8 @@ func IsInGrid[T comparable](coords Coords, grid [][]T) bool {
 func (c Coords) ToString() string {
 	return fmt.Sprintf("%d,%d", c.X, c.Y)
 }
+
+// ManhattanDistance returns the Mannattan distance between two coords (orthogonal)
+func (c Coords) ManhattanDistance(to Coords) int {
+	return maths.Abs(c.X - to.X) + maths.Abs(c.Y - to.Y)
+}

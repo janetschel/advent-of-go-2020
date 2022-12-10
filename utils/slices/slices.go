@@ -19,8 +19,8 @@ func ParseLine(line string, splitOn string, vars ...*string) {
 	Unpack(regex.Split(line, -1), vars...)
 }
 
-func Filter(slice []string, filter func(string) bool) []string {
-	retSlice := make([]string, 0)
+func Filter[T comparable](slice []T, filter func(T) bool) []T {
+	retSlice := make([]T, 0)
 
 	for _, element := range slice {
 		if filter(element) {
@@ -31,27 +31,9 @@ func Filter(slice []string, filter func(string) bool) []string {
 	return retSlice
 }
 
-func Contains(slice []string, word string) bool {
+func Contains[T comparable](slice []T, word T) bool {
 	for _, element := range slice {
 		if element == word {
-			return true
-		}
-	}
-
-	return false
-}
-
-func ContainsGeneric(slice interface{}, item interface{}) bool {
-	kind := reflect.TypeOf(slice).Kind()
-	if kind != reflect.Slice {
-		panic("Slice is not a slice")
-	}
-
-	s := reflect.ValueOf(slice)
-	println(s.Index(1).Interface())
-	println(item)
-	for i := 0; i < s.Len(); i++ {
-		if s.Index(i).Interface() == item {
 			return true
 		}
 	}

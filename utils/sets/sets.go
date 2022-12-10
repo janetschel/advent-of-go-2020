@@ -109,3 +109,10 @@ func (set Set) String() string {
 
 	return str[:len(str)-2] + " }"
 }
+
+func (set Set) Random() string {
+	for element := range set.elements {
+		return element
+	}
+	return ""
+}

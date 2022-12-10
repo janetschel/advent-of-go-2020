@@ -6,9 +6,9 @@ import (
 
 // Item is something that can be put into priority queue
 type Item struct {
-	Value    string
+	Value   string
 	Priority int
-	index    int
+	index   int
 }
 
 // PriorityQueue implements heap.Interface and holds Items
@@ -48,6 +48,16 @@ func (pq *PriorityQueue) Pop() interface{} {
 	item.index = -1 // for safety
 	*pq = old[0 : n-1]
 	return item
+}
+
+// Peek returns the item, without removing it from the queue, if present, otherwise nil
+func (pq PriorityQueue) Peek(value string) interface{} {
+	for i := range pq {
+		if pq[i].Value == value {
+			return pq[i]
+		}
+	}
+	return nil
 }
 
 // Update changes the priority of an item
