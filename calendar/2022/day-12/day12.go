@@ -4,7 +4,6 @@ import (
 	"advent-of-go/utils/files"
 	"advent-of-go/utils/grid"
 	"advent-of-go/utils/sets"
-	"advent-of-go/utils/slices"
 	"sort"
 )
 
@@ -81,7 +80,6 @@ func findShortestPath(puzzle [][]rune, starts []grid.Coords, end grid.Coords) in
 	if len(winningPathLengths) == 0 {
 		return - 1
 	}
-	winningPathLengths = slices.Filter(winningPathLengths, func(a int) bool { return a > 0})
 	sort.Ints(winningPathLengths)
 	return winningPathLengths[0] - 1
 }
