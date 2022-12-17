@@ -8,6 +8,11 @@ import (
 	"strings"
 )
 
+type result struct {
+	open sets.Set
+	score int
+}
+
 type valve struct {
 	name string
 	flowRate int
@@ -29,11 +34,11 @@ func main() {
 
 func solvePart1(input []string) int {
 	valves := parseInput(input)
-	pressures := getMaxPressureReleased(valves, 30, map[string]int{})
+	pressures := getMaxPressureReleased(valves, 30)
 	maxPressure := 0
-	for p := range pressures {
-		if p > maxPressure {
-			maxPressure = p
+	for _, p := range pressures {
+		if p.score > maxPressure {
+			maxPressure = p.score
 		}
 	}
 	return maxPressure
@@ -41,21 +46,28 @@ func solvePart1(input []string) int {
 
 func solvePart2(input []string) int {
 	valves := parseInput(input)
-	pressures := getMaxPressureReleased(valves, 26, map[string]int{})
 	maxPressure := 0
-	for p := range pressures {
-		if p > maxPressure {
-			maxPressure = p
+
+	pressures := getMaxPressureReleased(valves, 26)
+	for _, p1 := range pressures {
+		for _, p2 := range pressures {
+			if p1.score + p2.score > maxPressure {
+				intersect := p1.open.Intersect(p2.open)
+				if intersect.Size() == 0 {
+					maxPressure = p1.score + p2.score
+				}
+			}
 		}
 	}
+
 	return maxPressure
 }
 
-func getMaxPressureReleased(valves map[string]*valve, timeLimit int, open map[string]int) map[int]map[string]int {
-	starting := state{ current: "AA", timeRemaining: timeLimit, open: open }
+func getMaxPressureReleased(valves map[string]*valve, timeLimit int) []result {
+	starting := state{ current: "AA", timeRemaining: timeLimit, open: map[string]int{} }
 	queue := []*state{ &starting }
 
-	endingPressures := map[int]map[string]int{}
+	endingPressures := []result{}
 
 	killswitch := 0
 	for len(queue) > 0 && killswitch < 9999999 {
@@ -63,7 +75,10 @@ func getMaxPressureReleased(valves map[string]*valve, timeLimit int, open map[st
 		queue = queue[1:]
 
 		if currentState.timeRemaining <= 0 {
-			endingPressures[currentState.getEndPressure(valves)] = currentState.open
+			endingPressures = append(endingPressures, result{
+				score: currentState.getEndPressure(valves),
+				open: toSet(currentState.open),
+			})
 		} else {
 			generatedStates := 0
 			for v, pathLength := range valves[currentState.current].paths {
@@ -77,7 +92,10 @@ func getMaxPressureReleased(valves map[string]*valve, timeLimit int, open map[st
 						newState.open[v] = newState.timeRemaining
 						queue = append(queue, &newState)
 					} else {
-						endingPressures[currentState.getEndPressure(valves)] = currentState.open
+						endingPressures = append(endingPressures, result{
+							score: currentState.getEndPressure(valves),
+							open: toSet(currentState.open),
+						})
 					}
 					generatedStates++
 				}
@@ -85,13 +103,15 @@ func getMaxPressureReleased(valves map[string]*valve, timeLimit int, open map[st
 
 			// if no moves/opens are relevant, stay in place
 			if generatedStates == 0 {
-				endingPressures[currentState.getEndPressure(valves)] = currentState.open
+				endingPressures = append(endingPressures, result{
+					score: currentState.getEndPressure(valves),
+					open: toSet(currentState.open),
+				})
 			}
 		}
 		killswitch++
 	}
 
-	println(killswitch, len(queue), len(endingPressures))
 	return endingPressures
 }
 
@@ -135,8 +155,6 @@ func (v *valve) generateShortestPaths(valves map[string]*valve) {
 	}
 }
 
-
-
 func (s *state) getEndPressure(valves map[string]*valve) int {
 	pressure := 0
 	for v, t := range s.open {
@@ -157,7 +175,14 @@ func (s state) copy() state {
 	return state{
 		current: s.current,
 		timeRemaining: s.timeRemaining,
-		// pressure: s.pressure,
 		open: newOpen,
 	}
+}
+
+func toSet(o map[string]int) sets.Set {
+	keys := sets.New()
+	for key := range o {
+		keys.Add(key)
+	}
+	return keys
 }
