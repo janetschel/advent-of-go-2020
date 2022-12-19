@@ -3,8 +3,8 @@ package main
 import (
 	"advent-of-go/utils/files"
 	"advent-of-go/utils/grid"
+	"advent-of-go/utils/maths"
 	"advent-of-go/utils/sets"
-	"advent-of-go/utils/slices"
 	"fmt"
 	"strings"
 )
@@ -16,22 +16,21 @@ func main() {
 }
 
 func solvePart1(input []string) int {
-	highestPoint, _ := simulate(input[0], 2022)
-	return highestPoint
+	return simulate(input[0], 2022)
 }
 
 func solvePart2(input []string) int {
-	highestPoint, _ := simulate(input[0], 10000)
-	return highestPoint
+	return simulate(input[0], 1000000000000)
 }
 
-func simulate(wind string, rocks int) (int, []int) {
-	delta, highestPoint := make([]int, rocks), 0
-
+func simulate(wind string, totalRocks int) int {
+	highestPoint, extraHeight := 0, 0
 	w := 0
 	occupied := sets.New()
-	for round := 0; round < rocks; round++ {
-		shape, movingDown := getShape(round, highestPoint), true
+
+	cache := map[string][2]int{}
+	for rock := 0; rock < totalRocks; rock++ {
+		shape, movingDown := getShape(rock, highestPoint), true
 		for movingDown {
 			if wind[w] == '>' {
 				shape, _ = moveRight(shape, occupied)
@@ -47,12 +46,24 @@ func simulate(wind string, rocks int) (int, []int) {
 			}
 			occupied.Add(p.ToString())
 		}
-		delta[round] = highestPoint - slices.Sum(delta)
+
+		key := fmt.Sprintf("%v %v", getCacheKey(rock, w), caveToString(occupied, highestPoint, highestPoint - 10))
+		results, seen := cache[key]
+		if seen {
+			dRocks, dHeight := rock - results[1], highestPoint - results[0]
+			cyclePeriod := ((totalRocks - results[1]) / dRocks) - 1
+			extraHeight += cyclePeriod * dHeight
+			rock += cyclePeriod * dRocks
+		} else {
+			cache[key] = [2]int{ highestPoint, rock }
+		}
 	}
 
-	fmt.Println(delta)
+	return highestPoint + extraHeight
+}
 
-	return highestPoint, delta
+func getCacheKey(round int, w int) string {
+	return fmt.Sprintf("%d,%d", round % 5, w)
 }
 
 func getShape(round int, highestPoint int) []grid.Coords {
@@ -152,9 +163,10 @@ func moveDown(shape []grid.Coords, occupied sets.Set) ([]grid.Coords, bool) {
 	return newShape, true
 }
 
-func printCave(occupied sets.Set, highestPoint int) {
-	for y := highestPoint; y > 0; y-- {
-		line := fmt.Sprintf("%2d |", y)
+func caveToString(occupied sets.Set, highestPoint int, floor int) string {
+	cave := ""
+	for y := highestPoint; y > maths.Max(floor, 0); y-- {
+		line := "|"
 		for x := 0; x < 7; x++ {
 			if occupied.Has(fmt.Sprintf("%d,%d", x, y)) {
 				line += "#"
@@ -163,11 +175,11 @@ func printCave(occupied sets.Set, highestPoint int) {
 			}
 		}
 		line += "|"
-		println(line)
+		cave += line + "\n"
 		if !strings.Contains(line, "#") {
 			panic("bad cave")
 		}
 	}
-	println("   +-------+")
-	println()
+	cave += "+-------+" + "\n"
+	return cave
 }
