@@ -69,8 +69,7 @@ func getMaxPressureReleased(valves map[string]*valve, timeLimit int) []result {
 
 	endingPressures := []result{}
 
-	killswitch := 0
-	for len(queue) > 0 && killswitch < 9999999 {
+	for len(queue) > 0 {
 		currentState := queue[0]
 		queue = queue[1:]
 
@@ -109,7 +108,6 @@ func getMaxPressureReleased(valves map[string]*valve, timeLimit int) []result {
 				})
 			}
 		}
-		killswitch++
 	}
 
 	return endingPressures
