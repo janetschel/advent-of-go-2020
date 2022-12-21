@@ -47,6 +47,7 @@ func simulate(wind string, totalRocks int) int {
 			occupied.Add(p.ToString())
 		}
 
+		// the first ten rows are somewhat arbitrarily selected as part of the cache key
 		key := fmt.Sprintf("%v %v", getCacheKey(rock, w), caveToString(occupied, highestPoint, highestPoint - 10))
 		results, seen := cache[key]
 		if seen {
