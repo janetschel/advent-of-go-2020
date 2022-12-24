@@ -18,6 +18,11 @@ func Abs(number int) int {
 	return number
 }
 
+// Lcm calculates the least common multiple of two numbers
+func Lcm(first int, second int) int {
+	return (first * second) / Gcd(first, second)
+}
+
 // Gcd calculates the greatest common denominator of two numbers
 func Gcd(first int, second int) int {
 	var div int
